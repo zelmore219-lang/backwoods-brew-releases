@@ -1,0 +1,5 @@
+16c326bd8cafcb340edf9be7e0f2821cf3f469a20dd6994be00eeabfa15a7e59  Backwoods-Brew-Main-8.2.0-Android.apk
+28f109746dd2d889a9864fdb29eb0a046efec6bcdb7adaf9fbd2d69e124228d0  Backwoods-Brew-Main-8.2.0-Windows-Setup.exe
+a2c042cd6cd6142e31f35faf4eff3567d3d988b4eeda3f8dae1d66c96597c035  Backwoods-Connected-Apps-8.2.0-and-4.1.0-source.zip
+e675663246c8a7ca37a33662599dc0b87e2a251a3368fc7e83c42391013ea0b1  Backwoods-Vendor-Ordering-4.1.0-Android.apk
+41628c392a74957c9c2e1ce472a73bdca77830c32f80e45be24041951e53bc00  Backwoods-Vendor-Ordering-4.1.0-Windows-Setup.exe
