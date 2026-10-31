@@ -1,0 +1,128 @@
+// MERGE-SAFE VENDOR APP RULES
+// Add the contents inside your existing:
+// service cloud.firestore { match /databases/{database}/documents { ... } }
+// Do not replace your main app rules with this file unless you have merged them first.
+
+function vendorSignedIn() { return request.auth != null; }
+function vendorProfile() {
+  return get(/databases/$(database)/documents/vendorUsers/$(request.auth.uid)).data;
+}
+function vendorActive() {
+  return vendorSignedIn() && vendorProfile().active == true;
+}
+function vendorRoleIs(roles) {
+  return vendorActive() && vendorProfile().role in roles;
+}
+function vendorOwnerOrManager() {
+  return vendorRoleIs(['owner', 'manager']);
+}
+function vendorCustomerAccount() {
+  return vendorRoleIs(['customer']);
+}
+function vendorOwnCustomer(customerId) {
+  return vendorCustomerAccount() && vendorProfile().customerId == customerId;
+}
+
+match /vendorUsers/{userId} {
+  function isVendorBootstrapAdmin() {
+    return vendorSignedIn()
+      && request.auth.uid == userId
+      && request.auth.token.email == 'admin@backwoodsbrew-e3584-d52a3.firebaseapp.com';
+  }
+
+  allow read: if (vendorSignedIn() && request.auth.uid == userId)
+    || vendorRoleIs(['owner', 'manager']);
+
+  allow create: if vendorRoleIs(['owner'])
+    || (isVendorBootstrapAdmin()
+      && request.resource.data.role == 'owner'
+      && request.resource.data.active == true
+      && request.resource.data.email == request.auth.token.email);
+
+  allow update: if vendorRoleIs(['owner']);
+  allow delete: if false;
+}
+
+match /vendorCustomers/{id} {
+  allow read: if vendorRoleIs(['owner','manager','sales','packer','driver','accounting']) || vendorOwnCustomer(id);
+  allow create, update: if vendorRoleIs(['owner','manager','sales']);
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorProducts/{id} {
+  allow read: if vendorActive();
+  allow create, update, delete: if vendorOwnerOrManager();
+}
+match /vendorOrders/{id} {
+  allow read: if vendorRoleIs(['owner','manager','sales','packer','driver','accounting']) || vendorOwnCustomer(resource.data.customerId);
+  allow create: if vendorRoleIs(['owner','manager','sales']) || vendorOwnCustomer(request.resource.data.customerId);
+  allow update: if vendorRoleIs(['owner','manager','sales','packer','driver']);
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorCredits/{id} {
+  allow read: if vendorRoleIs(['owner','manager','sales','driver','accounting']) || vendorOwnCustomer(resource.data.customerId);
+  allow create: if vendorRoleIs(['owner','manager','sales']);
+  allow update: if vendorRoleIs(['owner','manager','driver','accounting']);
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorPayments/{id} {
+  allow read, create: if vendorRoleIs(['owner','manager','driver','accounting']);
+  allow update: if vendorRoleIs(['owner','manager','accounting']);
+  allow delete: if false;
+}
+match /vendorInventoryMovements/{id} {
+  allow read: if vendorRoleIs(['owner','manager','sales','packer','driver','accounting']);
+  allow create: if vendorRoleIs(['owner','manager','packer','driver']);
+  allow update, delete: if false;
+}
+match /vendorRoutes/{id} {
+  allow read: if vendorRoleIs(['owner','manager','sales','driver']);
+  allow create, update, delete: if vendorOwnerOrManager();
+}
+match /vendorNotifications/{id} {
+  allow read: if vendorActive();
+  allow create: if vendorRoleIs(['owner','manager']);
+  allow update: if vendorActive();
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorSettings/{id} {
+  allow read: if vendorActive();
+  allow write: if vendorRoleIs(['owner']);
+}
+match /vendorCloudBackups/{id} {
+  allow read, create, delete: if vendorRoleIs(['owner']);
+  allow update: if false;
+}
+match /vendorSuppliers/{id} {
+  allow read: if vendorRoleIs(['owner','manager','packer','accounting']);
+  allow create, update, delete: if vendorRoleIs(['owner','manager']);
+}
+match /vendorPurchaseOrders/{id} {
+  allow read: if vendorRoleIs(['owner','manager','packer','accounting']);
+  allow create, update: if vendorRoleIs(['owner','manager','packer','accounting']);
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorPurchaseReceipts/{id} {
+  allow read: if vendorRoleIs(['owner','manager','packer','accounting']);
+  allow create: if vendorRoleIs(['owner','manager','packer']);
+  allow update, delete: if false;
+}
+match /vendorSupplierInvoices/{id} {
+  allow read: if vendorRoleIs(['owner','manager','accounting']);
+  allow create, update: if vendorRoleIs(['owner','manager','accounting']);
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorRecurringOrders/{id} {
+  allow read: if vendorRoleIs(['owner','manager','sales','accounting']);
+  allow create, update: if vendorRoleIs(['owner','manager','sales']);
+  allow delete: if vendorOwnerOrManager();
+}
+match /vendorDriverSettlements/{id} {
+  allow read: if vendorRoleIs(['owner','manager','accounting']);
+  allow create: if vendorRoleIs(['owner','manager','accounting']);
+  allow update, delete: if false;
+}
+match /vendorAuditLogs/{id} {
+  allow read: if vendorRoleIs(['owner','manager']);
+  allow create: if vendorSignedIn();
+  allow update, delete: if false;
+}
