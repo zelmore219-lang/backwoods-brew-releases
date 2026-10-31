@@ -1,0 +1,61 @@
+// ADD INSIDE your existing match /databases/{database}/documents { ... }
+// Put this before the final "DENY ALL OTHER FIRESTORE ACCESS" section.
+// Keep all current main-app and vendor rules. Uses your existing helper functions.
+
+match /vendorNotifications/{notificationId} {
+  allow read: if hasActiveVendorProfile();
+  allow create: if isVendorManager()
+    || (hasActiveVendorProfile()
+      && vendorRole() in ['sales', 'driver']
+      && request.resource.data.get('type', '') in ['route_visit', 'route_closeout']);
+  allow update: if isVendorManager()
+    || (hasActiveVendorProfile()
+      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt']))
+    || (hasActiveVendorProfile()
+      && vendorRole() in ['sales', 'driver']
+      && resource.data.get('type', '') in ['route_visit', 'route_closeout']
+      && request.resource.data.get('type', '') == resource.data.get('type', ''));
+  allow delete: if isVendorManager();
+}
+
+match /vendorInventoryMovements/{movementId} {
+  allow read: if isVendorManager() || isVendorWarehouse()
+    || isVendorDriver() || isVendorAccounting()
+    || (hasActiveVendorProfile() && vendorRole() == 'sales');
+  allow create: if isVendorManager() || isVendorWarehouse() || isVendorDriver();
+  allow update, delete: if false;
+}
+
+match /vendorPurchaseOrders/{purchaseOrderId} {
+  allow read, create, update: if isVendorManager()
+    || isVendorWarehouse() || isVendorAccounting();
+  allow delete: if isVendorManager();
+}
+
+match /vendorPurchaseReceipts/{receiptId} {
+  allow read: if isVendorManager() || isVendorWarehouse() || isVendorAccounting();
+  allow create: if isVendorManager() || isVendorWarehouse();
+  allow update, delete: if false;
+}
+
+match /vendorSupplierInvoices/{supplierInvoiceId} {
+  allow read, create, update: if isVendorAccounting();
+  allow delete: if isVendorManager();
+}
+
+match /vendorCloudBackups/{backupId} {
+  allow read, create, update, delete: if isVendorOwner();
+}
+
+match /vendorRecurringOrders/{recurringOrderId} {
+  allow read: if isVendorAccounting()
+    || (hasActiveVendorProfile() && vendorRole() == 'sales');
+  allow create, update: if isVendorManager()
+    || (hasActiveVendorProfile() && vendorRole() == 'sales');
+  allow delete: if isVendorManager();
+}
+
+match /vendorDriverSettlements/{settlementId} {
+  allow read, create: if isVendorAccounting();
+  allow update, delete: if false;
+}
