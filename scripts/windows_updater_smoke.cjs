@@ -5,6 +5,8 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const {_electron}=require('playwright');
 const executable=process.argv[2];
+const publicMetadata=path.join(__dirname,'../employee-updates/package.json');
+const expectedVersion=JSON.parse(fs.readFileSync(fs.existsSync(publicMetadata)?publicMetadata:path.join(__dirname,'../desktop-local/package.json'))).version;
 const reuse=process.argv.includes('--reuse');
 const evidence=path.join(process.env.RUNNER_TEMP||require('node:os').tmpdir(),'employee-updater-smoke.json');
 if(process.platform!=='win32'||!executable)throw Error('Supply the packaged Windows Employee executable on a disposable Windows test runner.');
@@ -21,7 +23,7 @@ async function launch(){
  const page=await app.firstWindow({timeout:90000});
  await page.waitForURL('http://127.0.0.1:*/assets/windows-start.html',{timeout:90000});
  assert.equal(await app.evaluate(({app})=>app.getPath('userData')),expectedData);
- assert.equal(await app.evaluate(({app})=>app.getVersion()),'0.3.1');
+ assert.equal(await app.evaluate(({app})=>app.getVersion()),expectedVersion);
  return {app,page};
 }
 (async()=>{
@@ -37,13 +39,16 @@ async function launch(){
   await app.evaluate(({Menu})=>Menu.getApplicationMenu().items.find(i=>i.label==='App updates').submenu.items[0].click());
   const wizard=await wizardPromise;await wizard.waitForLoadState('domcontentloaded');
   assert.equal(await wizard.title(),'App updates');
-  await wizard.locator('#current').filter({hasText:'0.3.1'}).waitFor();
+  await wizard.locator('#current').filter({hasText:expectedVersion}).waitFor();
   assert.equal(await wizard.locator('#feed').inputValue(),'https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/employee-updates/backwoods-employees-updates.json');
+  const feedResponse=await fetch('https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/employee-updates/backwoods-employees-updates.json');
+  assert.ok(feedResponse.ok||feedResponse.status===404);
   await wizard.locator('#check').click();
   await wizard.locator('#phase').filter({hasText:/current|error|available/}).waitFor({timeout:90000});
   // Before first publication a clear 404 is expected; after publication current is expected.
   const message=await wizard.locator('#message').textContent();
-  assert.match(message,/latest published version|not been published|new version is available/i);
+  assert.match(message,feedResponse.ok?/latest published version|new version is available/i:/not been published/i);
+  console.log('Verified Windows updater response: '+message);
   assert.equal(await wizard.locator('#install').isEnabled(),false);
   await app.close();
   ({app,page}=await launch());
