@@ -21,7 +21,10 @@ def api(path):
 def release(tag):
     result=subprocess.run(['gh','api',f'repos/{REPO}/releases/tags/{tag}'],capture_output=True,text=True)
     if result.returncode:
-        if '404' in result.stderr:return None
+        # GitHub's tag endpoint can hide a draft until the tag is published.
+        # Authenticated release listing includes our existing draft by ID.
+        if '404' in result.stderr:
+            return next((item for item in api('releases?per_page=100') if item['tag_name']==tag),None)
         raise RuntimeError('Cannot read the Employee release channel: '+result.stderr)
     return json.loads(result.stdout)
 
