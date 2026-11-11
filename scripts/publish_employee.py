@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import time
 import urllib.request
 from assemble_employee import ROOT,assemble
 
@@ -62,6 +63,15 @@ def public_bytes(url,expected_size=None,expected_hash=None):
 
 
 def asset(channel,name):return next((a for a in channel['assets'] if a['name']==name),None)
+
+
+def verify_public_feed(url,expected):
+    # GitHub's download edge can briefly serve the previous asset after an
+    # atomic publisher upload, even with no-cache. Never accept different data.
+    for attempt in range(8):
+        if json.loads(public_bytes(url))==expected:return
+        if attempt<7:time.sleep(5)
+    raise ValueError('Published Employee feed could not be verified')
 
 
 def publish():
@@ -138,8 +148,7 @@ def publish():
             rollback=ROOT/'output/rollback'/FEED_NAME;rollback.parent.mkdir(exist_ok=True);rollback.write_bytes(old)
             gh('release','upload',FEED_TAG,str(rollback));raise
         else:raise
-    final=public_bytes(PREFIX+FEED_TAG+'/'+FEED_NAME)
-    if json.loads(final)!=feed:raise ValueError('Published Employee feed could not be verified')
+    verify_public_feed(PREFIX+FEED_TAG+'/'+FEED_NAME,feed)
     print(json.dumps({'published':True,'windowsVersion':version,'androidVersion':android_info['version'] if android_info else None,'installerDownloadVerified':True,
         'feed':PREFIX+FEED_TAG+'/'+FEED_NAME,'release':f'https://github.com/{REPO}/releases/tag/{tag}',
         'otherAppsChanged':False},indent=2))
