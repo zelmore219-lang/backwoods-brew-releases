@@ -14,8 +14,10 @@ FEED_NAME='backwoods-employees-updates.json'
 PREFIX=f'https://github.com/{REPO}/releases/download/'
 
 
-def api(path):
-    return json.loads(subprocess.check_output(['gh','api',f'repos/{REPO}/{path}'],text=True))
+def api(path,method='GET',payload=None):
+    arguments=['gh','api','--method',method,'-H','Cache-Control: no-cache',f'repos/{REPO}/{path}']
+    if payload is not None:arguments+=['--input','-']
+    return json.loads(subprocess.check_output(arguments,input=json.dumps(payload) if payload is not None else None,text=True))
 
 
 def release(tag):
@@ -24,7 +26,14 @@ def release(tag):
         # GitHub's tag endpoint can hide a draft until the tag is published.
         # Authenticated release listing includes our existing draft by ID.
         if '404' in result.stderr:
-            return next((item for item in api('releases?per_page=100') if item['tag_name']==tag),None)
+            existing=next((item for item in api('releases?per_page=100') if item['tag_name']==tag),None)
+            if existing:return existing
+            lookup=subprocess.run(['gh','release','view',tag,'--repo',REPO,'--json','apiUrl'],capture_output=True,text=True)
+            if lookup.returncode==0:
+                url=json.loads(lookup.stdout)['apiUrl'];prefix=f'https://api.github.com/repos/{REPO}/releases/'
+                if not url.startswith(prefix) or not url[len(prefix):].isdigit():raise ValueError('Invalid draft release API identity')
+                return api('releases/'+url[len(prefix):])
+            return None
         raise RuntimeError('Cannot read the Employee release channel: '+result.stderr)
     return json.loads(result.stdout)
 
@@ -64,9 +73,10 @@ def publish():
     tag='employees-'+version
     current=release(tag)
     if not current:
-        gh('release','create',tag,'--target',os.environ['GITHUB_SHA'],'--draft','--latest=false',
-           '--title','Backwoods Employees '+version,'--notes-file',str(ROOT/'EMPLOYEE-RELEASE-NOTES.md'))
-        current=release(tag)
+        # Retain the creation response's numeric identity. A new draft is not
+        # immediately visible through GitHub's tag/list endpoints.
+        current=api('releases','POST',{'tag_name':tag,'target_commitish':os.environ['GITHUB_SHA'],'draft':True,'make_latest':'false','name':'Backwoods Employees '+version,'body':(ROOT/'EMPLOYEE-RELEASE-NOTES.md').read_text()})
+    release_id=current['id']
     packages=[(metadata,installer)]+([(android,apk)] if android else [])
     for details,file in packages:
         existing=asset(current,file.name)
@@ -76,11 +86,11 @@ def publish():
         else:
             if not current['draft']:raise ValueError('An already published version cannot gain replacement packages')
             gh('release','upload',tag,str(file))
-        candidate=asset(release(tag),file.name)
+        candidate=asset(api('releases/'+str(release_id)),file.name)
         if candidate.get('digest')!='sha256:'+details['sha256'] or candidate['size']!=details['size']:
             raise ValueError('Uploaded package checksum mismatch')
-    if not asset(release(tag),'SHA256SUMS.txt'):gh('release','upload',tag,str(installer.parent/'SHA256SUMS.txt'))
-    if current['draft']:gh('release','edit',tag,'--draft=false','--latest=false')
+    if not asset(api('releases/'+str(release_id)),'SHA256SUMS.txt'):gh('release','upload',tag,str(installer.parent/'SHA256SUMS.txt'))
+    if current['draft']:api('releases/'+str(release_id),'PATCH',{'draft':False,'make_latest':'false'})
     info={'version':version,'url':PREFIX+tag+'/'+installer.name,'sha256':metadata['sha256'],'size':metadata['size']}
     public_bytes(info['url'],info['size'],info['sha256'])
     android_info={key:android[key] for key in ['version','versionCode','packageName','certificateSha256','size','sha256','firstInstallOnly']} if android else None
@@ -89,9 +99,7 @@ def publish():
         public_bytes(android_info['url'],android_info['size'],android_info['sha256'])
     channel=release(FEED_TAG)
     if not channel:
-        gh('release','create',FEED_TAG,'--target',os.environ['GITHUB_SHA'],'--latest=false',
-           '--title','Backwoods Employee app update channel','--notes','Verified Employee update feed. Install the bootstrap Windows update once, then use App updates in the Employee program.')
-        channel=release(FEED_TAG)
+        channel=api('releases','POST',{'tag_name':FEED_TAG,'target_commitish':os.environ['GITHUB_SHA'],'draft':False,'make_latest':'false','name':'Backwoods Employee app update channel','body':'Verified Employee update feed. Install the bootstrap Windows update once, then use App updates in the Employee program.'})
     if channel['draft']:raise ValueError('The Employee feed channel must be publicly readable')
     before=asset(channel,FEED_NAME)
     old=None;previous=None
@@ -118,13 +126,13 @@ def publish():
         feed['apps']['employees']['android']=android_info
     feed['apps']['employees']['notes']=metadata.get('notes','Verified Employee update; preserves existing Windows records and document key.')
     payload=ROOT/'output'/FEED_NAME;payload.write_text(json.dumps(feed,indent=2)+'\n')
-    fresh=asset(release(FEED_TAG),FEED_NAME)
+    fresh=asset(api('releases/'+str(channel['id'])),FEED_NAME)
     if (before and (not fresh or fresh['id']!=before['id'] or fresh.get('digest')!=before.get('digest'))) or (not before and fresh):
         raise ValueError('The Employee feed changed while packages uploaded. Refusing to overwrite it.')
     try:
         gh('release','upload',FEED_TAG,str(payload),*(['--clobber'] if before else []))
     except Exception:
-        latest=asset(release(FEED_TAG),FEED_NAME)
+        latest=asset(api('releases/'+str(channel['id'])),FEED_NAME)
         if latest and latest.get('digest')=='sha256:'+checksum(payload):pass
         elif not latest and old is not None:
             rollback=ROOT/'output/rollback'/FEED_NAME;rollback.parent.mkdir(exist_ok=True);rollback.write_bytes(old)
