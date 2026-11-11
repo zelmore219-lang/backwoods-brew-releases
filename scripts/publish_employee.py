@@ -57,27 +57,36 @@ def asset(channel,name):return next((a for a in channel['assets'] if a['name']==
 
 def publish():
     metadata,installer=assemble()
+    android,apk=assemble('android') if (ROOT/'employee-updates/android-package.json').exists() else (None,None)
     version=metadata['version']
     if not re.fullmatch(r'\d+\.\d+\.\d+',version):raise ValueError('Invalid release version')
+    if android and (android['version']!=version or android.get('packageName')!='com.backwoods.employees' or not isinstance(android.get('versionCode'),int) or android['versionCode']<1 or not re.fullmatch('[a-f0-9]{64}',android.get('certificateSha256',''))):raise ValueError('Invalid Android release identity')
     tag='employees-'+version
     current=release(tag)
     if not current:
         gh('release','create',tag,'--target',os.environ['GITHUB_SHA'],'--draft','--latest=false',
-           '--title','Backwoods Employees '+version+' — Windows updater','--notes-file',str(ROOT/'EMPLOYEE-RELEASE-NOTES.md'))
+           '--title','Backwoods Employees '+version,'--notes-file',str(ROOT/'EMPLOYEE-RELEASE-NOTES.md'))
         current=release(tag)
-    existing=asset(current,installer.name)
-    if existing:
-        if existing.get('digest')!='sha256:'+metadata['sha256'] or existing['size']!=metadata['size']:
-            raise ValueError('This version already contains different bytes. Use a new version.')
-    else:
-        if not current['draft']:raise ValueError('An already published version cannot gain replacement packages')
-        gh('release','upload',tag,str(installer),str(installer.parent/'SHA256SUMS.txt'))
-    candidate=asset(release(tag),installer.name)
-    if candidate.get('digest')!='sha256:'+metadata['sha256'] or candidate['size']!=metadata['size']:
-        raise ValueError('Uploaded installer checksum mismatch')
+    packages=[(metadata,installer)]+([(android,apk)] if android else [])
+    for details,file in packages:
+        existing=asset(current,file.name)
+        if existing:
+            if existing.get('digest')!='sha256:'+details['sha256'] or existing['size']!=details['size']:
+                raise ValueError('This version already contains different bytes. Use a new version.')
+        else:
+            if not current['draft']:raise ValueError('An already published version cannot gain replacement packages')
+            gh('release','upload',tag,str(file))
+        candidate=asset(release(tag),file.name)
+        if candidate.get('digest')!='sha256:'+details['sha256'] or candidate['size']!=details['size']:
+            raise ValueError('Uploaded package checksum mismatch')
+    if not asset(release(tag),'SHA256SUMS.txt'):gh('release','upload',tag,str(installer.parent/'SHA256SUMS.txt'))
     if current['draft']:gh('release','edit',tag,'--draft=false','--latest=false')
     info={'version':version,'url':PREFIX+tag+'/'+installer.name,'sha256':metadata['sha256'],'size':metadata['size']}
     public_bytes(info['url'],info['size'],info['sha256'])
+    android_info={key:android[key] for key in ['version','versionCode','packageName','certificateSha256','size','sha256','firstInstallOnly']} if android else None
+    if android_info:
+        android_info['url']=PREFIX+tag+'/'+apk.name
+        public_bytes(android_info['url'],android_info['size'],android_info['sha256'])
     channel=release(FEED_TAG)
     if not channel:
         gh('release','create',FEED_TAG,'--target',os.environ['GITHUB_SHA'],'--latest=false',
@@ -100,7 +109,14 @@ def publish():
     if feed.get('schemaVersion')!=1 or set(feed.get('apps',{}))!={'employees'}:
         raise ValueError('This publisher only supports the separate Employee feed')
     feed['apps']['employees']['windows']=info
-    feed['apps']['employees']['notes']='Adds automatic update checks, optional automatic downloads, and verified installation from the Employee app. Keeps the existing Windows records and document key. Central HR repairs are separate work.'
+    if android_info:
+        old_android=feed['apps']['employees'].get('android',{})
+        if old_android:
+            if old_android.get('packageName')!=android_info['packageName'] or old_android.get('certificateSha256')!=android_info['certificateSha256']:raise ValueError('The Android signing identity cannot be replaced')
+            if old_android.get('versionCode',0)>android_info['versionCode']:raise ValueError('Refusing to downgrade the Android feed')
+            if old_android.get('versionCode')==android_info['versionCode'] and old_android.get('sha256')!=android_info['sha256']:raise ValueError('An existing Android version cannot be replaced')
+        feed['apps']['employees']['android']=android_info
+    feed['apps']['employees']['notes']=metadata.get('notes','Verified Employee update; preserves existing Windows records and document key.')
     payload=ROOT/'output'/FEED_NAME;payload.write_text(json.dumps(feed,indent=2)+'\n')
     fresh=asset(release(FEED_TAG),FEED_NAME)
     if (before and (not fresh or fresh['id']!=before['id'] or fresh.get('digest')!=before.get('digest'))) or (not before and fresh):
@@ -116,7 +132,7 @@ def publish():
         else:raise
     final=public_bytes(PREFIX+FEED_TAG+'/'+FEED_NAME)
     if json.loads(final)!=feed:raise ValueError('Published Employee feed could not be verified')
-    print(json.dumps({'published':True,'windowsVersion':version,'installerDownloadVerified':True,
+    print(json.dumps({'published':True,'windowsVersion':version,'androidVersion':android_info['version'] if android_info else None,'installerDownloadVerified':True,
         'feed':PREFIX+FEED_TAG+'/'+FEED_NAME,'release':f'https://github.com/{REPO}/releases/tag/{tag}',
         'otherAppsChanged':False},indent=2))
 

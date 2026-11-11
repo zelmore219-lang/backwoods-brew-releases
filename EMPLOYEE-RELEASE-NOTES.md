@@ -1,17 +1,13 @@
-Backwoods Employees 0.3.1 adds an updater to the existing Windows program.
+Backwoods Employees 0.4.1 adds the Employee icon, onboarding progress, Main timecard review, shared account administration and a private Windows owner service using Firebase's free plan.
 
-Download and run Backwoods-Employees-Setup-0.3.1.exe once. Save work and close the
-Employee app first. Use the same Windows account as before. The installer keeps
-the existing records and encrypted document key in the Backwoods Employees data
-folder. After installation, open App updates > Check for updates, or press
-Ctrl+Shift+U. Checks also run automatically; automatic downloading is optional.
-Choose when to install. The installer is unsigned, so Windows may show a publisher
-warning.
+Windows: download and run Backwoods-Employees-Setup-0.4.1.exe using the same Windows account as before. Save work and close the app first. Existing employee records and the encrypted document key stay in place. If you already have the Employee updater, use App updates → Check for updates. Version 0.3.0 needs this setup once to gain the updater.
 
-This release adds the updater. Central HR account provisioning, password resets,
-onboarding integration and Main timecard synchronization remain separate repair
-work. No other Backwoods app is changed.
+To activate shared records, use the Windows PC containing your existing Employee data. Open Owner service → Connect or manage owner service, connect the Google owner of the existing Backwoods Firebase project, review the matching Employee/Main owner records, and start the service. Keep this PC signed in and online for shared changes and password resets. Firebase billing remains disabled. Administrator credentials stay private on the owner PC; they are not shipped in the installer or APK.
 
-No Android update is included. A compatible APK requires the original Employee
-signing key, which was absent from the supplied source. Keep the installed Android
-app and its local records.
+Android: Backwoods-Employees-0.4.1-First-Install.apk is for a new Android installation. Its signing identity is preserved privately for future updates. It cannot update the old 0.3.0-full APK, whose original signing key was not supplied. If Employee is already installed on Android, keep that app and its records; do not uninstall it to install this package. The updater checks signing identity and blocks incompatible APK updates.
+
+Verified: 62 Python regression tests, eight Firebase emulator workflows, 12 Chromium workflow/layout checks, 12 updater tests, six Android policy/install-handoff tests and an actual Android emulator test of the packaged Python engine. The Windows installer passed upgrade from 0.3.1, restart and reinstall while retaining the employee record and DPAPI document key, owner-window isolation, bundled administration SDK loading and live updater checks. [Windows acceptance](https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43106129737) and [Android acceptance](https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43006055985) used disposable test environments. The publisher verifies the public downloads and updates only the separate Employee feed.
+
+Supported account adapters: Main, Wholesale and Employee Management. Driver, Central Accounting and Production adapters remain unfinished. Main cached kiosk authentication/concurrent-state acceptance, company-wide overtime reconciliation and physical company-device acceptance remain outstanding. Company-approved onboarding documents and employment/payroll policies are still required; drafts are not automatically approved. Separate document drafting remains deferred.
+
+This release does not claim that every Backwoods app integration is finished. The existing Main, Vendor and Accounting updater feeds are unchanged.

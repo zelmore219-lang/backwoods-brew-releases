@@ -6,7 +6,9 @@ const crypto=require('node:crypto');
 const {_electron}=require('playwright');
 const executable=process.argv[2];
 const publicMetadata=path.join(__dirname,'../employee-updates/package.json');
-const expectedVersion=JSON.parse(fs.readFileSync(fs.existsSync(publicMetadata)?publicMetadata:path.join(__dirname,'../desktop-local/package.json'))).version;
+const versionArgument=process.argv.find(argument=>argument.startsWith('--expected-version='));
+const expectedVersion=versionArgument?versionArgument.split('=')[1]:JSON.parse(fs.readFileSync(fs.existsSync(publicMetadata)?publicMetadata:path.join(__dirname,'../desktop-local/package.json'))).version;
+assert.match(expectedVersion,/^\d+\.\d+\.\d+$/);
 const reuse=process.argv.includes('--reuse');
 const evidence=path.join(process.env.RUNNER_TEMP||require('node:os').tmpdir(),'employee-updater-smoke.json');
 if(process.platform!=='win32'||!executable)throw Error('Supply the packaged Windows Employee executable on a disposable Windows test runner.');
@@ -33,6 +35,31 @@ async function launch(){
   let state=await api(page,'/api/state');assert.equal(state.employees.length,1);
   const ownerId=state.me.id;
   const keyFile=path.join(expectedData,'employee-documents.dpapi');assert.ok(fs.existsSync(keyFile));const keyHash=hash(keyFile);
+  if(expectedVersion!=='0.3.1'){
+   const ownerRuntime=await app.evaluate(({app})=>{
+    const require=process.mainModule?.require?process.mainModule.require.bind(process.mainModule):process.getBuiltinModule('node:module').createRequire(app.getAppPath()+'/package.json');
+    const path=require('node:path'),fs=require('node:fs'),{spawnSync}=require('node:child_process');
+    const resources=path.dirname(app.getAppPath());
+    const archive=path.join(app.getAppPath(),'owner-auth.asar');
+    const auth=require(path.join(fs.existsSync(archive)?archive:path.join(app.getAppPath(),'owner-auth'),'node_modules/firebase-tools/lib/auth.js'));
+    const child=spawnSync(path.join(resources,'python/python.exe'),['-c','import firebase_admin; from google.oauth2.credentials import Credentials; from app.owner_runtime import Runtime; print("owner-runtime-ready")'],{cwd:path.join(resources,'program'),encoding:'utf8',windowsHide:true,timeout:30000});
+    return {start:typeof auth.loginRemotelyStart,complete:typeof auth.loginRemotelyComplete,status:child.status,output:child.stdout,error:child.stderr};
+   });
+   assert.equal(ownerRuntime.start,'function');assert.equal(ownerRuntime.complete,'function');
+   assert.equal(ownerRuntime.status,0,ownerRuntime.error);assert.match(ownerRuntime.output,/owner-runtime-ready/);
+   assert.equal(await page.evaluate(()=>typeof window.employeeOwner),'undefined','The Employee renderer must not expose the owner credential bridge');
+   assert.equal(fs.existsSync(path.join(expectedData,'owner-google.dpapi')),false,'No customer Google administrator credential may ship in an installer');
+   const ownerPromise=app.waitForEvent('window');
+   await app.evaluate(({Menu})=>Menu.getApplicationMenu().items.find(item=>item.label==='Owner service').submenu.items[0].click());
+   const ownerWindow=await ownerPromise;await ownerWindow.waitForLoadState('domcontentloaded');
+   await ownerWindow.getByRole('heading',{name:'Employee owner service',exact:true}).waitFor();
+   const ownerState=await ownerWindow.evaluate(()=>window.employeeOwner.action('state'));
+   assert.equal(ownerState.connected,false);assert.equal(ownerState.running,false);
+   assert.deepEqual(Object.keys(ownerState).sort(),['configured','connected','email','message','running']);
+   await ownerWindow.getByRole('button',{name:'Load owner records',exact:true}).click();
+   await ownerWindow.locator('#error').filter({hasText:'Connect the Google owner account first'}).waitFor();
+   await ownerWindow.close();
+  }
   if(reuse){const previous=JSON.parse(fs.readFileSync(evidence));assert.equal(ownerId,previous.ownerId);assert.equal(keyHash,previous.keyHash);}
   else fs.writeFileSync(evidence,JSON.stringify({ownerId,keyHash}));
   const wizardPromise=app.waitForEvent('window');

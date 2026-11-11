@@ -1,0 +1,49 @@
+{
+  "app": "employees",
+  "platform": "android",
+  "name": "Backwoods-Employees-0.4.1-First-Install.apk",
+  "version": "0.4.1",
+  "size": 49823226,
+  "sha256": "006cee9057a145922d6ebf30b239c89172dd32b26cb01aa2610c68c389e3c059",
+  "packageName": "com.backwoods.employees",
+  "versionCode": 6,
+  "certificateSha256": "cb23abd74d557260bdf0fbeedb59776cd26dddfd5c7c3c3c3aae0b013b0527d1",
+  "firstInstallOnly": true,
+  "parts": [
+    {
+      "path": "employee-updates/0.4.1/android.part000",
+      "size": 7340032,
+      "sha256": "5fa1e0c84633ee9dc3e995155e121843a4ba372ac9c88b8580faf266ad0d4120"
+    },
+    {
+      "path": "employee-updates/0.4.1/android.part001",
+      "size": 7340032,
+      "sha256": "1fbaa70856d05558c6d36dd76f69803a75c512d01c9e1a11fc89d8797c7fed5e"
+    },
+    {
+      "path": "employee-updates/0.4.1/android.part002",
+      "size": 7340032,
+      "sha256": "10bbc8a4891868681d7eca1ef5e0e2546c116d1a18636d98e0d8742216a1817a"
+    },
+    {
+      "path": "employee-updates/0.4.1/android.part003",
+      "size": 7340032,
+      "sha256": "0393de610df90990a04c0d7a938ea837fbb3484bba68743ac9588e870f216f20"
+    },
+    {
+      "path": "employee-updates/0.4.1/android.part004",
+      "size": 7340032,
+      "sha256": "8a5cec8527458e92d9d4c69e3a5a5128092e3925954ff54ae83e40d6bab5247d"
+    },
+    {
+      "path": "employee-updates/0.4.1/android.part005",
+      "size": 7340032,
+      "sha256": "fd8cdd0e585747c80ce8a3fa02078efe8645b4cf33b3d87413e0aea81a02bca1"
+    },
+    {
+      "path": "employee-updates/0.4.1/android.part006",
+      "size": 5783034,
+      "sha256": "cb9fc54525c5779c9bf8389558a0519380d8976682d8e6657d250c5db7a8dc7b"
+    }
+  ]
+}
