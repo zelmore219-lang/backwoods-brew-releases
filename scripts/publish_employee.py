@@ -106,6 +106,8 @@ def publish():
     android_info={key:android[key] for key in ['version','versionCode','packageName','certificateSha256','size','sha256','firstInstallOnly']} if android else None
     if android_info:
         android_info['url']=PREFIX+tag+'/'+apk.name
+        android_info['minSdk']=android.get('minSdk',26)
+        android_info['abis']=android.get('abis',['arm64-v8a','x86_64'])
         public_bytes(android_info['url'],android_info['size'],android_info['sha256'])
     channel=release(FEED_TAG)
     if not channel:
