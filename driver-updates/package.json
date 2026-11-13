@@ -1,0 +1,92 @@
+{
+  "app": "driver",
+  "platform": "windows",
+  "version": "0.5.0",
+  "name": "Backwoods-Driver-Setup-0.5.0.exe",
+  "size": 115340815,
+  "sha256": "53ccfafe356837e6bdde797ac10805b535d9fcc07414a186a422fc8eb87c75cc",
+  "sourceSHA": "cf994c9f5f8239fa9f5b7319af05d524c7c89231",
+  "notes": "Signed completed invoice history, full-page/80 mm printing, shared clock and shift GPS, approved invoice revisions, Windows and Android updater. Install this Windows setup once. Android is a separate first installation and preserves the original app. Employee 0.4.2 Owner service must run for shared administration.",
+  "parts": [
+    {
+      "path": "driver-updates/0.5.0/installer.part000",
+      "size": 7340032,
+      "sha256": "99e6bd797c182f0c23faced396f38bf40c6006f888013e6babd92a2e9d8d6962"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part001",
+      "size": 7340032,
+      "sha256": "d9a395d37c1b56513abb30ca14ef6f4d592102c2ca2e74a6d0498c9b95b26b02"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part002",
+      "size": 7340032,
+      "sha256": "fb2f7b72f89f277674f914952997bddd3dafba1de051093a3fa2b3de28dc2924"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part003",
+      "size": 7340032,
+      "sha256": "904b08ea2b96bc08099c93bd1a45da75234cc7ec082be3b1c25341fdb6b79c42"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part004",
+      "size": 7340032,
+      "sha256": "4dc21ced51df334b456c8226135156039d57f7c66990a2c7680f3ad4e9f8eacf"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part005",
+      "size": 7340032,
+      "sha256": "1391c797d69c9054b2d7295f6a676deb17fec420a31cd753934bd820b0071821"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part006",
+      "size": 7340032,
+      "sha256": "2aad08e12f0c636a4101c02cd3d3ef090f5f9f37d0cf9060cc6f9a965ab9e915"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part007",
+      "size": 7340032,
+      "sha256": "063d4c031dbad2389557a367a893ae820ed11dc6015337b77b46e4b75b2633fa"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part008",
+      "size": 7340032,
+      "sha256": "2f749c285d6c555b29a68a1256cdb20edf921219e5d6620141781a5e85a8bf21"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part009",
+      "size": 7340032,
+      "sha256": "44c8075721bea0a78775a862f301386da2c737c910d3fb4bc88e160a36aaa4cf"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part010",
+      "size": 7340032,
+      "sha256": "6c0faca40d4f999dd025ab4bc9f3be9cb553eacb3791cfd0211042ae2b97fdbb"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part011",
+      "size": 7340032,
+      "sha256": "b0120d5f60b596c69a6b69434f57a077d4aa8f58e4e4fd11e2d70117ef7bd61e"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part012",
+      "size": 7340032,
+      "sha256": "df3e1c8211c296c521d1cf5350c718684c5c76d18b8caeacf66a6f6be7d46692"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part013",
+      "size": 7340032,
+      "sha256": "de69b6d197a665d37e197f922ea280a3813b4f8dd9507a6e5fcac1030347928d"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part014",
+      "size": 7340032,
+      "sha256": "30787695bac798b6e4e68190bb2b9b54e8ebe3fe99cc1c074580df7a894837b8"
+    },
+    {
+      "path": "driver-updates/0.5.0/installer.part015",
+      "size": 5240335,
+      "sha256": "66f8b6c0c2758e138f5a4045f57944f5e4085657f9f30f5f5130771c4fb7574d"
+    }
+  ]
+}

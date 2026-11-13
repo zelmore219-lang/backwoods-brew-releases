@@ -1,22 +1,25 @@
-# backwoods-brew-releases
+# Backwoods Brew app downloads
 
-Backwoods Employees: [Windows installer and Android first-install APK, version 0.4.1](https://github.com/zelmore219-lang/backwoods-brew-releases/releases/tag/employees-0.4.1).
+- [Driver 0.5.0 — Windows and Android](https://github.com/zelmore219-lang/backwoods-brew-releases/releases/tag/driver-0.5.0)
+- [Employee 0.4.2 — Windows and Android](https://github.com/zelmore219-lang/backwoods-brew-releases/releases/tag/employees-0.4.2)
 
-Install the Windows setup once using the same Windows account as before, then
-use **App updates → Check for updates** in the Employee program. Update checks
-also run automatically. Save your work and close the app before installing.
-Your existing employee records and encrypted document key stay in place.
+Install the Driver Windows setup once to add **App updates**. Existing Employee
+updaters receive 0.4.2 through **App updates → Check for updates**. Save work and
+close the application before installing, and use the same Windows account as
+before. Installation and reinstall preservation are tested before publication.
 
-The separate Employee update feed is published only after a Windows installer
-test, app startup test and reinstall preservation test pass. It does not change
-the Main, Vendor or Accounting updater feeds.
+The Driver APK installs **Backwoods Driver (New)** alongside the original app,
+because its original signing key is unavailable. Keep the original app and its
+records, and synchronize pending work before switching. The new app's signing
+key is retained privately for future updates. Employee 0.4.2 Android updates
+0.4.1 using its retained key; legacy 0.3.0-full has a different signing identity
+and must be kept with its existing records.
 
-On the Windows PC containing the actual Employee records, open **Owner service**
-to connect the Google owner, review existing owner records, and start shared
-administration on Firebase's free plan. Keep this PC online for shared changes.
-Main, Wholesale and Employee Management account adapters are supported; other
-app adapters and company-wide overtime reconciliation remain outstanding.
+For shared accounts, timecards and approved Driver invoice revisions, install
+Employee 0.4.2 on the Windows PC containing the actual HR records and activate
+its **Owner service**. Keep that PC awake and online. Firebase stays on its free
+plan. See [setup steps](DRIVER-SETUP.md) and the release notes for device limits.
 
-The Android APK is for a new installation. An existing legacy Employee Android
-installation requires its original signing key; do not uninstall it or replace
-its data. The new signing identity is backed up privately for future updates.
+Driver and Employee have separate verified update feeds. The Main, Vendor and
+Accounting feeds are preserved. Separate onboarding document drafting and
+Production app work remain queued.
