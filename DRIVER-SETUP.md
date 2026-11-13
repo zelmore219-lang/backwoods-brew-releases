@@ -18,7 +18,9 @@
    and its records. Sign in with the existing Backwoods username and password.
 5. **Check the actual device.** Clock in, allow location and visible shift
    notifications, confirm the actual route, and select the intended printer.
-   Android may require enabling the printer's own print service. Standard
+   Android may require enabling the printer's own print service. Select the
+   printer's correct paper width in its print settings; Save as PDF may retain
+   the system's Letter paper even with the narrow receipt layout. Standard
    Android/Windows installation confirmations still apply to future updates.
 
 Completed Invoices retains saved signed versions with delivery dates and supports
