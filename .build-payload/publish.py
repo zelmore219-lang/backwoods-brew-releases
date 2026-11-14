@@ -24,8 +24,8 @@ def api(path):
  # staging the checksum-pinned installer. This public repository token has
  # no access to the private source repository.
  evidence=json.loads(Path(__file__).with_name('accepted-build.json').read_text())
- if path=='repos/'+SOURCE_REPO+'/actions/runs/43617489601':return evidence['run']
- if path=='repos/'+SOURCE_REPO+'/actions/runs/43617489601/jobs':return evidence['jobs']
+ if path=='repos/'+SOURCE_REPO+'/actions/runs/43635778527':return evidence['run']
+ if path=='repos/'+SOURCE_REPO+'/actions/runs/43635778527/jobs':return evidence['jobs']
  if path=='repos/'+SOURCE_REPO+'/releases?per_page=100':return evidence['releases']
  return json.loads(gh('api',path))
 def mutate(method,path,payload):
@@ -66,7 +66,7 @@ def updated_feed(current,version,sha256,size):
   if any(windows.get(key)!=value for key,value in expected.items()):raise ValueError('A published version cannot be replaced with different package bytes')
   return result
  windows.update(expected)
- result['apps']['employees']['notes']='Windows '+version+': paper onboarding without uploads, department hours and estimated gross pay, time approvals and PTO, and approved records for Business Accounting. '+str(result['apps']['employees'].get('notes',''))
+ result['apps']['employees']['notes']='Windows '+version+': Vendor shared time, central Employee sign-in for Accounting, protected approved payroll inputs and permission-view retirement; paper onboarding, Hours & pay and PTO are preserved. '+str(result['apps']['employees'].get('notes',''))
  return result
 
 def public_bytes(url):
@@ -115,7 +115,7 @@ def main():
   release=mutate('POST','repos/'+RELEASE_REPO+'/releases',{'tag_name':tag,'draft':True,'name':'Backwoods Employees '+args.version,'body':args.notes.read_text(encoding='utf-8')})
  with tempfile.TemporaryDirectory(prefix='employee-release-') as folder:
   folder=Path(folder);checksums=folder/'SHA256SUMS.txt';checksums.write_text(sha+'  '+args.installer.name+'\n',encoding='utf-8')
-  provenance=folder/'release-source.json';provenance.write_text(json.dumps({'application':'Backwoods Employees','version':args.version,'sourceRepository':SOURCE_REPO,'sourceSha':args.source_sha,'windowsAcceptanceRun':args.acceptance_run,'windowsUnitAcceptanceRun':43617489601,'windowsUnitSourceSha':'b15fe1a91c75753d1e17c624cc3f9949ce799951','windows':{'filename':args.installer.name,'sha256':sha,'size':size},'android':'Existing signed Android feed retained; this publication contains Windows only.'},indent=2)+'\n',encoding='utf-8')
+  provenance=folder/'release-source.json';provenance.write_text(json.dumps({'application':'Backwoods Employees','version':args.version,'sourceRepository':SOURCE_REPO,'sourceSha':args.source_sha,'windowsAcceptanceRun':args.acceptance_run,'windowsUnitAcceptanceRun':43635778527,'windowsUnitSourceSha':'f00c69b810f864e9d799fe955de76164d9518c2b','windows':{'filename':args.installer.name,'sha256':sha,'size':size},'android':'Existing signed Android feed retained; this publication contains Windows only.'},indent=2)+'\n',encoding='utf-8')
   guide=folder/'OWNER-ONBOARDING-CHECKLIST.md';guide.write_text(args.owner_guide.read_text(encoding='utf-8'),encoding='utf-8')
   if release['draft']:
    upload(release['id'],[args.installer,checksums,provenance,guide])

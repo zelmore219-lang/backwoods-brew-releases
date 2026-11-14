@@ -2,10 +2,10 @@ import hashlib,json
 from pathlib import Path
 root=Path(__file__).resolve().parent
 m=json.loads((root/'manifest.json').read_text())
-assert (m['version'],m['sourceSha'],m['windowsAcceptanceRun'],m['size'],m['sha256'])==('0.4.5', 'b15fe1a91c75753d1e17c624cc3f9949ce799951', 43617489601, 172758185, 'cf02f994401b238eb5212ccc654f42ea04c5a7e2eb4af9a9dc7b1b1db53075c1')
-assert m['filename']=='Backwoods-Employees-Setup-0.4.5.exe'
+assert (m['version'],m['sourceSha'],m['windowsAcceptanceRun'],m['size'],m['sha256'])==('0.4.6', 'f00c69b810f864e9d799fe955de76164d9518c2b', 43635778527, 172638312, 'aa10ef7455e59c84264add88f1ec42c7d7780c483b98ade15c7f30ac7d88ee5a')
+assert m['filename']=='Backwoods-Employees-Setup-0.4.6.exe'
 unit=json.loads((root/'accepted-build.json').read_text())['windowsUnit']
-assert unit=={'id': 43617489601, 'sourceSha': 'b15fe1a91c75753d1e17c624cc3f9949ce799951', 'status': 'completed', 'conclusion': 'success', 'pythonTests': 126, 'pythonSkipped': 20, 'nodePassed': 16}
+assert unit=={'id': 43635778527, 'sourceSha': 'f00c69b810f864e9d799fe955de76164d9518c2b', 'status': 'completed', 'conclusion': 'success', 'pythonTests': 135, 'pythonSkipped': 24, 'nodePassed': 16}
 output=Path('/tmp')/m['filename']
 with output.open('wb') as stream:
  for index,part in enumerate(m['parts']):
@@ -15,4 +15,4 @@ with output.open('wb') as stream:
   stream.write(raw)
 assert output.stat().st_size==m['size']
 with output.open('rb') as stream:assert hashlib.file_digest(stream,'sha256').hexdigest()==m['sha256']
-print('Reconstructed exact accepted Employee 0.4.5 Windows installer: unit, upgrade, report-route, encryption and reinstall checks passed.')
+print('Reconstructed exact accepted Employee 0.4.6 Windows installer: unit, upgrade, report-route, encryption and reinstall checks passed.')

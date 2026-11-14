@@ -1,92 +1,64 @@
-# Backwoods Employees 0.4.5
+# Employee Windows 0.4.6 — Vendor time and Accounting connection
 
-Employee is the workforce app: onboarding, shared timecards, time approval and
-denial, hours and estimated gross pay by department, and PTO. Payroll processing,
-taxes, deductions, payroll results and payments belong in Business Accounting.
-The Employee screens and command API no longer offer payroll processing or a
-Gusto connection. Historical payroll records remain in the existing database
-and backups. Existing Backwoods identities, documents and time punches stay in
-place.
+- Vendor Clock In / Clock Out uses the existing shared Employee UID, active
+  Wholesale access and actual Wholesale job. Owner service performs the punch
+  with server timestamps in the existing shared active-shift transaction.
+- Employee administrators can review Vendor records with Main, Driver and
+  Employee time, including original source, division/job, correction history and
+  approval status. Delayed/offline clock actions require office review. Retry
+  IDs prevent duplicate punches, cards and financial sources.
+- Accounting application access can be granted as owner/accountant/viewer from
+  the existing Employee profile. Accounting 1.0.8 can use that same password and
+  UID; staff do not need a second personnel login.
+- Authorized owner/payroll views publish a private read-only roster and complete
+  current approved hours/paid leave for Accounting. Stale approvals are withheld
+  with a reason. Personnel forms, SSNs, bank details, emergency contacts and
+  employee passwords are never in that feed.
+- Obsolete private view chunks are retired when permissions change, so a lower
+  role cannot fetch an earlier privileged payroll projection. Original records
+  remain in the private Employee database.
+- Paper onboarding, automatic approval dates, activation verification, PTO,
+  Hours & pay and the existing manual approved-time download remain intact.
+  Employee does not process payroll or require Gusto enrollment.
 
-## Owner setup and onboarding
+## Owner steps
 
-1. Install the Windows update using the same Windows account and existing data.
-   Open Owner service → Connect or manage owner service… and keep Start service
-   running. No new Firebase project, sign-in or billing plan is needed for an
-   already connected owner PC.
-2. People → View the actual employee. In Connected Backwoods accounts, link the
-   existing Driver login to that person's matching Employee profile and exact
-   verified UID. Use the existing employee record and password. A timecard's
-   username may differ from another employee you checked earlier; confirm the
-   actual worker before linking hours.
-3. People → View → Prepare paper onboarding packet. The Packet approval date
-   fills itself using the organization timezone; the server records the actual
-   approval date. Handbook version or reference is optional. Enter the actual
-   paper-file storage location and approve the checklist, then Approve and
-   assign paper packet. An Activate employee dialog with draft blockers also
-   opens this setup directly. All five required paper acknowledgments are
-   assigned and unfinished starter drafts are replaced. The previous handbook
-   reference and storage location are remembered. Repeating this on another
-   day does not redate or replace unchanged signed paperwork.
-4. The employee completes the W-4, Alabama A-4, I-9, handbook acknowledgment
-   and emergency contact paper originals. In My workspace → View → Acknowledge
-   paper completion, enter the employee's full name, confirm completion and
-   signature consent, then Sign acknowledgment for each assignment.
-5. A different authorized owner / HR reviewer uses Documents → Review → Approve
-   document to confirm each actual paper original and storage reference. I-9
-   also requires its actual verifier examination and retention details. No
-   document upload is required. Finish any required password change, actual job
-   assignment and training completion/verification, then Activate employee.
+1. Update the existing Windows installation using the same account and data.
+2. Open **Owner service → Connect or manage owner service… → Start service**.
+   Keep that PC running. Reuse the existing Firebase configuration; no new
+   project, billing upgrade or rule deployment is required for this extension.
+3. In **People → View**, confirm the actual person's shared login/verified UID,
+   active employment, changed temporary password and actual Wholesale job.
+   **Application access → Assign access → wholesale** grants Vendor access.
+   Assign **accounting** separately for authorized financial staff.
+4. Vendor 4.1.9: same username/password → **Clock In / Clock Out**. Employee:
+   **Time & attendance → Shared time cards → Refresh → Review**. Complete
+   approved workweeks/timesheets before Accounting **Sync approved Employee
+   hours**. Do not link the reported jboozer/jcopeland shift to zstyles by name.
+5. Accounting 1.0.8: **Payroll Management → Connect Employee**, review workspace
+   and select the actual legal company. HR.my/provider preparation, receipt,
+   final-result accounting and bank reconciliation happen in Accounting and the
+   actual external service, not Employee.
 
-## Hours, gross pay and PTO
+## Validation / limits
 
-- Time & attendance → Shared time cards collects connected Main, Driver and
-  Employee clocks. Department and work-location labels come from the reviewed
-  payroll job, never from a guessed home department or retail store. Owner
-  service now refreshes old unchanged records after a verified identity link.
-  Driver-only workspaces can open shared timecards without a saved Main record.
-- Use Review to confirm offline clock times, actual unpaid breaks and the
-  employee's actual job. Owner / managers can approve or deny shared timecards
-  and submitted timesheets. Denying a timesheet preserves its original clock
-  history and lets the employee correct and resubmit it.
-- Hours & pay → choose company, period, employee and department → Calculate
-  hours & pay. See regular/OT hours and estimated hourly gross wages before
-  taxes/deductions. Open or disputed records show their reason rather than a
-  guessed wage. Salary arrangements remain identified for Accounting review.
-- Time & attendance / Hours & pay → PTO balances. Owner / HR uses Adjust PTO
-  balance for actual earned/opening hours or documented corrections. No accrual
-  policy is assumed. Employee: Scheduling → Request time off. Manager: Review
-  the request, approve/deny it, enter actual paid hours and the actual job.
-  Approved usage reduces the balance once. Denials do not consume PTO. Paid
-  leave remains separate from worked hours and does not increase overtime.
+Disposable real Auth/Firestore integration covers Vendor username login,
+P-256 encrypted owner relay, cross-device active state, lost responses, offline
+retry, review permissions, original timestamp protection and department display
+on desktop/tablet/phone. Real approved Employee hours reach the same Accounting
+ledger; staff use the same UID/password, revoked grants are denied, stale or
+withdrawn approvals are not eligible. Permission downgrades retire obsolete
+private payroll projections and their chunks. No live personnel, source timecards,
+activations, provider submissions or bank payments were altered by testing.
 
-## Accounting handoff
+The existing public Employee Android package is retained; a new unsigned CI
+Android build is not a compatible published update without its original signing
+identity. Main/Vendor/Accounting Android builds use their retained signing key.
+Production's unshipped source remains missing, so manufacturing integration is
+not claimed. See Accounting's `docs/COORDINATED-OWNER-GUIDE.md` for the full owner
+workflow and provider-dependent configuration.
 
-After timecards and the complete timesheets are approved, open Hours & pay,
-choose the company and a period containing complete approved timesheets, then
-Download approved time & PTO. This download includes all departments for that
-company/period; employee and department filters only narrow the preview.
+Windows acceptance passed: https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43635778527 .
+Source: f00c69b810f864e9d799fe955de76164d9518c2b. Installer SHA-256: aa10ef7455e59c84264add88f1ec42c7d7780c483b98ade15c7f30ac7d88ee5a.
 
-Extract the ZIP. It contains business-accounting-time.json, department totals,
-approved hours / estimated gross wages, approved time off and supporting
-timecards. Money fields ending in Cents are integer cents. In Business Accounting
-1.0.7 or later, open Connect apps → Source app: Employee Employer app, choose
-business-accounting-time.json, Preview import, then Import into company ledger.
-Payroll & employees shows the approved Employee hours & PTO for payroll review.
-Importing hours does not post wages, pay staff or file taxes. Reimporting the same
-records does not duplicate them. Complete payroll and HR.my result entry in
-Business Accounting, not in Employee.
-
-## Verification before Windows packaging
-
-126 ordinary Python tests: 107 passed, 19 explicit emulator skips. The new
-browser workflow covers actual draft recovery, automatic dates, department pay
-progress, employee PTO request / owner approval, original Employee timecards in
-the ZIP, and actual Accounting UI import / duplicate retry. The existing
-17-check browser workflow also passes, including five paper signatures,
-separate original review, I-9 evidence and activation without uploads. No live
-company records or payments were changed. Windows install/reinstall verification
-and owner-device acceptance are separate from these local checks.
-
-Windows acceptance passed: https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43617489601 .
-Source: b15fe1a91c75753d1e17c624cc3f9949ce799951. Installer SHA-256: cf02f994401b238eb5212ccc654f42ea04c5a7e2eb4af9a9dc7b1b1db53075c1.
+[Open the complete owner setup and payroll guide](https://github.com/zelmore219-lang/backwoods-accounting-/releases/tag/apps-coordinated-2026-11-14).

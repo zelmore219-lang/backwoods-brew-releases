@@ -1,65 +1,65 @@
 {
-  "version": "0.4.5",
-  "sourceSha": "b15fe1a91c75753d1e17c624cc3f9949ce799951",
-  "windowsAcceptanceRun": 43617489601,
-  "filename": "Backwoods-Employees-Setup-0.4.5.exe",
-  "size": 172758185,
-  "sha256": "cf02f994401b238eb5212ccc654f42ea04c5a7e2eb4af9a9dc7b1b1db53075c1",
+  "version": "0.4.6",
+  "sourceSha": "f00c69b810f864e9d799fe955de76164d9518c2b",
+  "windowsAcceptanceRun": 43635778527,
+  "filename": "Backwoods-Employees-Setup-0.4.6.exe",
+  "size": 172638312,
+  "sha256": "aa10ef7455e59c84264add88f1ec42c7d7780c483b98ade15c7f30ac7d88ee5a",
   "parts": [
     {
       "name": "installer.part000",
       "size": 16777216,
-      "sha256": "9d2c548c072b510d2fbf103284a03118e967ed7b1e6875e2e6d9399cb713e178"
+      "sha256": "5f4704ad90d09665604edbc0203451723d59cc4aa2ad43806d96c6a3c60caf05"
     },
     {
       "name": "installer.part001",
       "size": 16777216,
-      "sha256": "64a531618da153c956656cb8cbdd40e2443b95fb4e06307083302be15af11ab6"
+      "sha256": "454972d4f811598d5c45520f013a61fccf1609a8195e896e1ce462ad81b296f8"
     },
     {
       "name": "installer.part002",
       "size": 16777216,
-      "sha256": "726529c95c6f3ffcd042c43fc5b490386ca522092d80ed94ff280d75dd4cc5ba"
+      "sha256": "cabec0873bde953202e74ebe7f0098557caa3633cba11712b676332d861d66d9"
     },
     {
       "name": "installer.part003",
       "size": 16777216,
-      "sha256": "0cc7949ec6c076ab1e383b8a4233cd3cbbd66b4e72345dc28a4674e4116a2027"
+      "sha256": "097a804a8c7326b3f9a81f399ddd4833b743f4c80640fcb019589ed7c51aead1"
     },
     {
       "name": "installer.part004",
       "size": 16777216,
-      "sha256": "b4124926d0659fa59888cb558b59aed3d1ba38718a94404c21f2b10aa7e1ea9c"
+      "sha256": "c1bcf238230f0ddc1fac569458bec251804cd5b4346b5c55cb2909f6eba2ef1c"
     },
     {
       "name": "installer.part005",
       "size": 16777216,
-      "sha256": "fb5abbac5fadf75298a39b38af463468e3ed5e1a5acf8353533e524e38d5eb4d"
+      "sha256": "e091ec95972861ec466011f963c2ab7f8798c6a048ae461e809ed58b4d1935d0"
     },
     {
       "name": "installer.part006",
       "size": 16777216,
-      "sha256": "d5d3018a49fd648cdd05c03e97e596b12576cd95becc72e04fe38b33b405be2e"
+      "sha256": "43ceb6ad36d890c7620349efe8114a527fe7d8227ff5dd081accb8f8eadca626"
     },
     {
       "name": "installer.part007",
       "size": 16777216,
-      "sha256": "72a5cc4cebd1dc07616db83386098cfc9ff20b2e5535590070080a328a5a372c"
+      "sha256": "c7b927ce2e6b0a0c3be74074d8e986a5c15a7685daa6b8f3148493803531e196"
     },
     {
       "name": "installer.part008",
       "size": 16777216,
-      "sha256": "22e0f17d9e681baec67fc991b8f0c9d5f39491bb4e4d6f470598fc8dbe0eb475"
+      "sha256": "c436399b7305b78454f4b4584c898827c4bc771fec6e2ac6a90c2ab306899ea8"
     },
     {
       "name": "installer.part009",
       "size": 16777216,
-      "sha256": "7cdc4cff23af77c7baa77122d52383da8ff1bfcb677eb6d88ec2c107ae0f2591"
+      "sha256": "2fbf262ac305adc3d074c43b9cdedfb8ce7e1b638cbcabf2e91b0e1bbb1c2c81"
     },
     {
       "name": "installer.part010",
-      "size": 4986025,
-      "sha256": "4332508fac7e9558584f8324e1503a6a6d54b9df5ea425109b63215318f418a7"
+      "size": 4866152,
+      "sha256": "be8ba7fe1e266712095d0cafd2c425591afd58292801f4ede6c2bfc35fb69db8"
     }
   ]
 }
