@@ -1,0 +1,58 @@
+{
+  "app": "employees",
+  "platform": "android",
+  "name": "Backwoods-Employees-0.4.3.apk",
+  "version": "0.4.3",
+  "versionCode": 8,
+  "size": 49991356,
+  "sha256": "6354370255ac64c389eeaab81c804d1a2a3a250782dc3f4c7b47429538cce86d",
+  "sourceSHA": "2b2bcb939b39ce0fd12446975fb7b30683ad6fbd",
+  "acceptanceRun": 43448629705,
+  "unsignedSHA256": "abf9f2e4d875eaba0c153845e0cb282ae7d39e938b6a44a0c03ffb225971dffc",
+  "payloadSHA256": "f5263f9908a4407c8952fbbbce413491412208e9fd50fa7a21062eb2e1cb6843",
+  "packageName": "com.backwoods.employees",
+  "certificateSha256": "cb23abd74d557260bdf0fbeedb59776cd26dddfd5c7c3c3c3aae0b013b0527d1",
+  "minSdk": 26,
+  "abis": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "firstInstallOnly": false,
+  "parts": [
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part000",
+      "size": 7340032,
+      "sha256": "5fa1e0c84633ee9dc3e995155e121843a4ba372ac9c88b8580faf266ad0d4120"
+    },
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part001",
+      "size": 7340032,
+      "sha256": "1fbaa70856d05558c6d36dd76f69803a75c512d01c9e1a11fc89d8797c7fed5e"
+    },
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part002",
+      "size": 7340032,
+      "sha256": "10bbc8a4891868681d7eca1ef5e0e2546c116d1a18636d98e0d8742216a1817a"
+    },
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part003",
+      "size": 7340032,
+      "sha256": "00ad8f5c38bc60c20561b93629520e1a6625e36b8545167a0c010fec41907cc8"
+    },
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part004",
+      "size": 7340032,
+      "sha256": "c5eb72be63b6f6ba957508194f4da50ede57ff815d07fa9a18f6e8a336a0e017"
+    },
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part005",
+      "size": 7340032,
+      "sha256": "27b6ba63a01944a28c522a7da1f81ae7942eee364f20308fb4b4c4349efcfb4d"
+    },
+    {
+      "path": "android-platform-updates/employees/0.4.3/android.part006",
+      "size": 5951164,
+      "sha256": "70f6b75bcf12012a6a8d4f3373ccca688039032c7ecc92add20c3be9d193596f"
+    }
+  ]
+}
