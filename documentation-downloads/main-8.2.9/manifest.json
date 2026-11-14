@@ -1,0 +1,109 @@
+{
+  "app": "main",
+  "version": "8.2.9",
+  "tag": "main-manual-8.2.9",
+  "archive": {
+    "name": "Backwoods-Main-8.2.9-Complete-Documentation.zip",
+    "size": 39155640,
+    "sha256": "2788d4c793d24de58ac15835b5257f46610c277edb87dca20240c3f68546aae6",
+    "parts": [
+      {
+        "path": "documentation-downloads/main-8.2.9/documents.part000",
+        "size": 7340032,
+        "sha256": "f7bc006cbba79668ca01324483bb0a9c24db59ecfa32ba8c752394977942ef38"
+      },
+      {
+        "path": "documentation-downloads/main-8.2.9/documents.part001",
+        "size": 7340032,
+        "sha256": "d234d34b6ad458fb37c7b66f6c4d223394977aaa0672c52dba3b2ff991cd529c"
+      },
+      {
+        "path": "documentation-downloads/main-8.2.9/documents.part002",
+        "size": 7340032,
+        "sha256": "452c9495988687b1714666a2ca3984d28ee3d85ea8c64d7705c537aae8e3807f"
+      },
+      {
+        "path": "documentation-downloads/main-8.2.9/documents.part003",
+        "size": 7340032,
+        "sha256": "d4f509b3a0c938de234110c147806b46e733c721301bc38384532ce326426100"
+      },
+      {
+        "path": "documentation-downloads/main-8.2.9/documents.part004",
+        "size": 7340032,
+        "sha256": "387010ae59277a39f7f11728de76616a381d36dd9f6f167ae3d718118b710c74"
+      },
+      {
+        "path": "documentation-downloads/main-8.2.9/documents.part005",
+        "size": 2455480,
+        "sha256": "2803025e19c3ff45a126380ffb7d8fec58f200d196812475cbbb5545868ee8ff"
+      }
+    ]
+  },
+  "files": [
+    {
+      "name": "Backwoods-Main-8.2.9-Administrator-Manual.docx",
+      "size": 6740600,
+      "sha256": "945d12357d9be5d5f0d9a88c40187ce225b93d9b01da4ccbc8f8d53c550fed04"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Administrator-Manual.pdf",
+      "size": 11888377,
+      "sha256": "dca2af370cef0ee336af253053df244c62a8d62d0932a8da76f7dce85ae6e7c4"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Complete-User-Manual.docx",
+      "size": 6973421,
+      "sha256": "b444fe111c6f63107b4b6bc24b51a39e6f061712075d592e91a02c80878792cc"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Complete-User-Manual.pdf",
+      "size": 12312470,
+      "sha256": "c100fa202f63552e7eed7bfbbfe228c9729ee5466e4360af045637e5f8ed3bc8"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Employee-Training-Guide.docx",
+      "size": 442865,
+      "sha256": "b558227f1ff16c0a140d2819d8ea00909dcdd74e343eaf9a1dc98f9ce4fa7bcc"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Employee-Training-Guide.pdf",
+      "size": 738649,
+      "sha256": "2c1a7927fec65baaa9a51567dc057c90e0524de04454529854e889d7c337f72b"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Feature-Checklist.csv",
+      "size": 108330,
+      "sha256": "265c3832a5af21de390e6e881d995085d9619f58316a927ef27b6bc31ed4e8e6"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Feature-Checklist.xlsx",
+      "size": 24440,
+      "sha256": "ef18bbf63350f6d69c75cbb63c12318f231dbb59491a142425cf1017e9ad6e9d"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Feature-Verification-Report.docx",
+      "size": 107802,
+      "sha256": "dfac361abe993fb79bda06ee9340fa1f8558a66c1da822cffc29efb7595d6875"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Feature-Verification-Report.pdf",
+      "size": 549912,
+      "sha256": "63026132b7b307f65f508050ee4c5ee7f902351192586f4c1759624585ead266"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Troubleshooting-Guide.docx",
+      "size": 81274,
+      "sha256": "fb34399f3b7d39fcadfe359c33774394dab34ba9b5b22b120078ee162640a86f"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Troubleshooting-Guide.pdf",
+      "size": 110902,
+      "sha256": "7bb61d8676e4ca7d409ed3546e2e14888facd0a353702a85e201ace7c2e4cbd4"
+    },
+    {
+      "name": "Backwoods-Main-8.2.9-Complete-Documentation.zip",
+      "size": 39155640,
+      "sha256": "2788d4c793d24de58ac15835b5257f46610c277edb87dca20240c3f68546aae6"
+    }
+  ]
+}
