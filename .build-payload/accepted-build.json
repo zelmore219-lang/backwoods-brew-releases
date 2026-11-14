@@ -1,7 +1,7 @@
 {
   "run": {
-    "id": 43543976858,
-    "head_sha": "8eb347afa633cb88187b703cd04f5a8234c409ff",
+    "id": 43617489601,
+    "head_sha": "b15fe1a91c75753d1e17c624cc3f9949ce799951",
     "status": "completed",
     "conclusion": "success"
   },
@@ -21,34 +21,34 @@
   },
   "releases": [
     {
-      "tag_name": "employee-ci-8eb347afa633cb88187b703cd04f5a8234c409ff",
+      "tag_name": "employee-ci-b15fe1a91c75753d1e17c624cc3f9949ce799951",
       "draft": true,
       "assets": [
         {
-          "name": "Backwoods-Employees-Setup-0.4.4.exe",
-          "size": 172688278,
-          "digest": "sha256:159089da0780a4ffd54559c60e60b4f29a01000640b1ebf5fd33a0852d7b2a6a"
+          "name": "Backwoods-Employees-Setup-0.4.5.exe",
+          "size": 172758185,
+          "digest": "sha256:cf02f994401b238eb5212ccc654f42ea04c5a7e2eb4af9a9dc7b1b1db53075c1"
         },
         {
           "name": "installed-file-manifest.json",
-          "size": 436861,
-          "digest": "sha256:a0527e2ced3d1e17b664fdfcb9339c78091bb0c9478604b675bfb56140e8f98d"
+          "size": 437445,
+          "digest": "sha256:2edb89fc9ba75263a2ba754e1ce4e96414a24f34cb7c770ad97a6c6dcf3874b8"
         },
         {
           "name": "SHA256SUMS.txt",
           "size": 103,
-          "digest": "sha256:413d6dca9f60b98832531152cce798726a4a40435b48deb9c1e05b61cebe428c"
+          "digest": "sha256:a884aafd0f77408bdb48647b2f6a2b3868b9e2581894fb408f67c19d8399156d"
         }
       ]
     }
   ],
   "windowsUnit": {
-    "id": 43545263061,
-    "sourceSha": "8eb347afa633cb88187b703cd04f5a8234c409ff",
+    "id": 43617489601,
+    "sourceSha": "b15fe1a91c75753d1e17c624cc3f9949ce799951",
     "status": "completed",
     "conclusion": "success",
-    "pythonTests": 114,
-    "pythonSkipped": 18,
+    "pythonTests": 126,
+    "pythonSkipped": 20,
     "nodePassed": 16
   }
 }
