@@ -1,0 +1,92 @@
+{
+  "app": "driver",
+  "platform": "windows",
+  "version": "0.5.1",
+  "name": "Backwoods-Driver-Setup-0.5.1.exe",
+  "size": 115341253,
+  "sha256": "384c27fe8dd6062e4ef558865c7ba9a1e8859c382c8048a4500a94225c4a3dd2",
+  "sourceSHA": "b4cd53644d8d1ea95da4a87cda7505bee43b3cc1",
+  "notes": "Fixes greyed-out Clock Out with pending punches; retains exact times, stops shift GPS and recovers synchronization without duplicate events. Windows updates the existing app. Android updates Driver (New) 0.5.0 with its existing signing key. Shared owner timekeeping must be active for new shifts and central payroll.",
+  "parts": [
+    {
+      "path": "driver-updates/0.5.1/installer.part000",
+      "size": 7340032,
+      "sha256": "870c32c6cf79cc20f20003d2e440b55548d6ebfcd4eb48955185c1aa86762459"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part001",
+      "size": 7340032,
+      "sha256": "401c4817d0af9f04b8cfb35c5521128547b38c7faaa659436cc4289e0e2b595c"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part002",
+      "size": 7340032,
+      "sha256": "742c3215de17492190bc283bfdef331011bf9d17078e04db64f172b2cb286865"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part003",
+      "size": 7340032,
+      "sha256": "dc64938f396e9105d3e7be3c62a685f34edf42f7ef9d638ae7ec384f1445c9a9"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part004",
+      "size": 7340032,
+      "sha256": "42aba4b72cb4c3398e3a443326a55d643fdfb3c59c4f907b743e1f73d087fc38"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part005",
+      "size": 7340032,
+      "sha256": "1b65b66f7953a951f9257c046f38afd4297c0a4574925cd63b1c124c8848ee0c"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part006",
+      "size": 7340032,
+      "sha256": "6e8c19333a629f8e17b3304761b754a9f69d23584afe8a3fb45ad6dc68984b92"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part007",
+      "size": 7340032,
+      "sha256": "5760914ba8779245d4db01d157a01132bf8a01a90a5d8f0874573b88b8c20c4e"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part008",
+      "size": 7340032,
+      "sha256": "e077ea82ea1379350a089f4944bd4dd7e270fddff7c19e30d0b2813dbc3ecb11"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part009",
+      "size": 7340032,
+      "sha256": "b1f1499ca14d9df7efbb943e9cd865140115235a383a3870fead1e4b36c3f42a"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part010",
+      "size": 7340032,
+      "sha256": "a6f4313351d7524d29b5f6a6363b707efe19318017e25cff9abb8d71ed437b62"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part011",
+      "size": 7340032,
+      "sha256": "bcbf4a93dd410d3c42fb34ffb76940fbdfde244096ed1460137be97cc54b4401"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part012",
+      "size": 7340032,
+      "sha256": "241e3c79d3d73fe38b951ce5397059d69c2de1590c751b4034dc8eb7a4f81ba8"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part013",
+      "size": 7340032,
+      "sha256": "2d5cbdc49f7f6fef2070264ddadafdb849de8183fabcd2be7ed3c60b8f5cf69e"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part014",
+      "size": 7340032,
+      "sha256": "8a8a9bb2282de6f43982097f02d056c21e0d8b2ed36078bd6df277ea78d9f9fe"
+    },
+    {
+      "path": "driver-updates/0.5.1/installer.part015",
+      "size": 5240773,
+      "sha256": "ae4981fcd91f9cd47076be19d17660cd34a56c5321dc6268476f4973c64accc2"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+name: Verify and publish Employee Windows updates
+on:
+  push:
+    branches: [main, 'codex/employee-updater-*']
+    paths:
+      - employee-updates/**
+      - scripts/*employee*
+      - scripts/windows_updater_smoke.cjs
+      - .github/workflows/employee-updates.yml
+      - EMPLOYEE-RELEASE-NOTES.md
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: employee-app-updates
+  cancel-in-progress: false
+jobs:
+  windows-install:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - name: Reconstruct and verify the installer
+        run: python scripts/assemble_employee.py
+      - name: Prepare packaged-app tests
+        run: npm install --no-save --package-lock=false --ignore-scripts playwright@1.62.0
+      - name: Install Employee on a disposable Windows runner
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem output/*.exe | Select-Object -First 1
+          $destination = Join-Path $env:RUNNER_TEMP 'EmployeeUpdaterTest'
+          $process = Start-Process -FilePath $setup.FullName -ArgumentList '/S',"/D=$destination" -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Installer failed with code $($process.ExitCode)" }
+          node scripts/windows_updater_smoke.cjs "$destination/Backwoods Employees.exe"
+          if ($LASTEXITCODE -ne 0) { throw 'Packaged Windows smoke test failed' }
+      - name: Reinstall and verify the existing records and document key
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem output/*.exe | Select-Object -First 1
+          $destination = Join-Path $env:RUNNER_TEMP 'EmployeeUpdaterTest'
+          $process = Start-Process -FilePath $setup.FullName -ArgumentList '/S',"/D=$destination" -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Installer failed with code $($process.ExitCode)" }
+          node scripts/windows_updater_smoke.cjs "$destination/Backwoods Employees.exe" --reuse
+          if ($LASTEXITCODE -ne 0) { throw 'Employee reinstall preservation test failed' }
+  publish:
+    needs: windows-install
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Publish verified installer, then enable the separate Employee feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_employee.py

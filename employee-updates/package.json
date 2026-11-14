@@ -1,0 +1,132 @@
+{
+  "app": "employees",
+  "platform": "windows",
+  "version": "0.4.2",
+  "name": "Backwoods-Employees-Setup-0.4.2.exe",
+  "size": 172690063,
+  "sha256": "3885079b7ccb909aa85f3d4ea0e403679fb4bc27174f59a3ba19c42a695ae84b",
+  "sourceSHA": "a51657575ad5f7d33dbe36754adb87c4d6696cd7",
+  "notes": "Shared Driver accounts and canonical Main/Driver/Employee timecards; reviewed corrections and protected payroll; trusted signed invoice revisions connected to the existing Accounting ledger. Start Owner service on your existing Employee Windows PC. Employee 0.4.1 Android updates retain their signing identity.",
+  "parts": [
+    {
+      "path": "employee-updates/0.4.2/installer.part000",
+      "size": 7340032,
+      "sha256": "f7908c4932e49966af028bd6e4159490ce8286b6b94ce256d2eb96ebb290586f"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part001",
+      "size": 7340032,
+      "sha256": "6f6f456dba237eae48638520dfb6d7208ebe0d12a8a5392697278f4f0ee9f0fd"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part002",
+      "size": 7340032,
+      "sha256": "76510c3e8585d9005cae7bde1f11844a5f7b739d4bb323693f7aa69434260e68"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part003",
+      "size": 7340032,
+      "sha256": "fa0f976c917a26fa093231e8a7378623cdec3ded40efb4f013d198ac38be1843"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part004",
+      "size": 7340032,
+      "sha256": "453b53c21a181cf52e98127a9a408a4a5ed6119eb56f38056a5303142959a18b"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part005",
+      "size": 7340032,
+      "sha256": "cc04945f39a4cafc606e6d3ade2912e65e903d1035977fca74b079d9b26bb803"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part006",
+      "size": 7340032,
+      "sha256": "af530454252204f85592704e0891e3f76bb1537cc331dce83c336504ee3983c2"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part007",
+      "size": 7340032,
+      "sha256": "04babfefa22298833e0fde904a5b27422a98cd8bb33f76ea9ad5cf0ff27e35d9"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part008",
+      "size": 7340032,
+      "sha256": "e808883d9e70fb2286b019abef8283f2440bae39049346341fa221318a99e349"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part009",
+      "size": 7340032,
+      "sha256": "7f1c6ab8a376e57486c54637a2be5dd0ab972c1b6e564399db452bfde2b5c1fc"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part010",
+      "size": 7340032,
+      "sha256": "992aa3910ec2d53c6300ed28698eb457aaf94f75b901af23d2ab96d5d43d5041"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part011",
+      "size": 7340032,
+      "sha256": "04236c3cb9018a6b2c4ca23e5d8be28582b63b9420039487ba580fd688b4225f"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part012",
+      "size": 7340032,
+      "sha256": "5ccf17b009f19cce2a21d01632e1c6db2ad177247ec4f39b8e353a7903e08bc9"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part013",
+      "size": 7340032,
+      "sha256": "ba3a8dbb5e289e701cd2dbc073ce51e0a599ec0bcff5642353bbc1e1e71e246b"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part014",
+      "size": 7340032,
+      "sha256": "e065304b295096fcf855274f9957504f94b8f8bc650d0e896ea192a746c89722"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part015",
+      "size": 7340032,
+      "sha256": "e14b47e8792e72fa3ae97feba54cb87634144402d2edec4c3e687be2fd9fd513"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part016",
+      "size": 7340032,
+      "sha256": "f80179a649d5f44ffdf183170635258e2d2f65ff1d975750d0b6899d0946b011"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part017",
+      "size": 7340032,
+      "sha256": "d69a0a0394966006fb37d74842595510a7b7f44018f6c72b4e41cf09efbccc72"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part018",
+      "size": 7340032,
+      "sha256": "f80315210abb630885340deab8b02afa1990d8a5f22649707b200a269df90b66"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part019",
+      "size": 7340032,
+      "sha256": "e247f2f9b48f8eb8426d2e2c5dd79448526f03a28da28af740dda4a1b1e28bab"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part020",
+      "size": 7340032,
+      "sha256": "614dabcae082998d557bf8dbd743452f13dc65af3b2a1f2e92abad126e5194f9"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part021",
+      "size": 7340032,
+      "sha256": "0065318e4510bc7a951c0875aceab66eeb571b0f6104ed9dc5f834fa410b5373"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part022",
+      "size": 7340032,
+      "sha256": "8189aa73b8045d2385efbf1a78148fe5e0123377d06f9f94404dbe31e3a8d9e9"
+    },
+    {
+      "path": "employee-updates/0.4.2/installer.part023",
+      "size": 3869327,
+      "sha256": "9db47b74fb89feb30901a2dc1cbd1019228bfe9526d7fe792b762cb7670bb7d2"
+    }
+  ]
+}
