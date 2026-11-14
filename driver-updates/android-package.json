@@ -1,16 +1,16 @@
 {
   "app": "driver",
   "platform": "android",
-  "version": "0.5.0",
-  "name": "Backwoods-Driver-0.5.0-Separate-First-Install.apk",
+  "version": "0.5.1",
+  "name": "Backwoods-Driver-0.5.1.apk",
   "size": 10933472,
-  "sha256": "81ef185f25d3e16340d6f597c001b3454c162b75bc5e6ba907254c0fc103a002",
-  "sourceSHA": "cf994c9f5f8239fa9f5b7319af05d524c7c89231",
-  "notes": "Signed completed invoice history, full-page/80 mm printing, shared clock and shift GPS, approved invoice revisions, Windows and Android updater. Install this Windows setup once. Android is a separate first installation and preserves the original app. Employee 0.4.2 Owner service must run for shared administration.",
+  "sha256": "3ecd527e2eac04d8317ad764dbbf80056a735c2992fe6c2dc695dc46c6fcacc5",
+  "sourceSHA": "b4cd53644d8d1ea95da4a87cda7505bee43b3cc1",
+  "notes": "Fixes greyed-out Clock Out with pending punches; retains exact times, stops shift GPS and recovers synchronization without duplicate events. Windows updates the existing app. Android updates Driver (New) 0.5.0 with its existing signing key. Shared owner timekeeping must be active for new shifts and central payroll.",
   "packageName": "com.backwoodsbrew.driver.next",
-  "versionCode": 1,
+  "versionCode": 2,
   "certificateSha256": "945f716409157a3e556cbd316c52336c53b32da5c307ba1e6fb32a020176f84f",
-  "firstInstallOnly": true,
+  "firstInstallOnly": false,
   "minSdk": 24,
   "abis": [
     "arm64-v8a",
@@ -20,14 +20,14 @@
   ],
   "parts": [
     {
-      "path": "driver-updates/0.5.0/android.part000",
+      "path": "driver-updates/0.5.1/android.part000",
       "size": 7340032,
-      "sha256": "db2d64d0603a3e784e02995944f5440a0bcb6edfcb492c60289ae7d1282dc6b3"
+      "sha256": "810916f55f45e90cece471d6545fe9c9a32e2f549e8e7fde44ea0f21c2600bb5"
     },
     {
-      "path": "driver-updates/0.5.0/android.part001",
+      "path": "driver-updates/0.5.1/android.part001",
       "size": 3593440,
-      "sha256": "5fcc2b597cd0e317e692a417557f1d9bf22bd7fd4001a308f5c369e514d3d204"
+      "sha256": "dc10cc65211d73dcfa59acbe24d3c451416cdb496986689b7fd7bebd928b06ab"
     }
   ]
 }

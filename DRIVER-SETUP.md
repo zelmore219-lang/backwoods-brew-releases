@@ -1,6 +1,6 @@
-# Driver 0.5.0 setup
+# Driver 0.5.1 setup
 
-1. **Update the HR Windows PC.** Install Employee 0.4.2 using the same Windows
+1. **Update the HR Windows PC.** Install Employee 0.4.3 using the same Windows
    account as the existing Employee program. Existing employee records and the
    encrypted document key remain in place.
 2. **Start the free owner service.** Open Employee's **Owner service → Connect
@@ -12,16 +12,24 @@
    Review each Driver's actual company, wholesale division, delivery job and
    workweek in **Time & attendance → Shared time cards** before approving payroll.
    The app does not create employee wages, retail stores or company books.
-4. **Install Driver.** On Windows, run the Driver 0.5.0 setup once to gain the
-   updater. On Android, synchronize pending work in the original Driver app,
-   then install **Backwoods Driver (New)** alongside it. Keep the original app
-   and its records. Sign in with the existing Backwoods username and password.
+4. **Update Driver.** On Windows, open **Backwoods Driver → App updates** and
+   install 0.5.1, or run the 0.5.1 Windows setup over the existing installation.
+   The original 0.4.0 Windows app needs that direct setup once to gain the updater.
+   On Android, update **Backwoods Driver (New)** 0.5.0 with the 0.5.1 APK; its
+   package and signing key are unchanged. For the older original Driver app,
+   synchronize pending work before switching to the separate new app. Keep
+   existing apps and records. Use the existing Backwoods username and password.
 5. **Check the actual device.** Clock in, allow location and visible shift
    notifications, confirm the actual route, and select the intended printer.
    Android may require enabling the printer's own print service. Select the
    printer's correct paper width in its print settings; Save as PDF may retain
    the system's Letter paper even with the narrow receipt layout. Standard
    Android/Windows installation confirmations still apply to future updates.
+
+If Clock Out was greyed out, update to 0.5.1 and press **Clock Out**. The app
+retains both punch times and stops location sharing while synchronization is
+pending. Keep the app's saved data. Review any pending timecard warnings with
+the office; do not create a second shift to replace the original punches.
 
 Completed Invoices retains saved signed versions with delivery dates and supports
 full-page or 80 mm reprints. For material corrections, a Wholesale administrator
