@@ -1,0 +1,54 @@
+{
+  "run": {
+    "id": 43543976858,
+    "head_sha": "8eb347afa633cb88187b703cd04f5a8234c409ff",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "name": "windows",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "android",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "releases": [
+    {
+      "tag_name": "employee-ci-8eb347afa633cb88187b703cd04f5a8234c409ff",
+      "draft": true,
+      "assets": [
+        {
+          "name": "Backwoods-Employees-Setup-0.4.4.exe",
+          "size": 172688278,
+          "digest": "sha256:159089da0780a4ffd54559c60e60b4f29a01000640b1ebf5fd33a0852d7b2a6a"
+        },
+        {
+          "name": "installed-file-manifest.json",
+          "size": 436861,
+          "digest": "sha256:a0527e2ced3d1e17b664fdfcb9339c78091bb0c9478604b675bfb56140e8f98d"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "size": 103,
+          "digest": "sha256:413d6dca9f60b98832531152cce798726a4a40435b48deb9c1e05b61cebe428c"
+        }
+      ]
+    }
+  ],
+  "windowsUnit": {
+    "id": 43545263061,
+    "sourceSha": "8eb347afa633cb88187b703cd04f5a8234c409ff",
+    "status": "completed",
+    "conclusion": "success",
+    "pythonTests": 114,
+    "pythonSkipped": 18,
+    "nodePassed": 16
+  }
+}

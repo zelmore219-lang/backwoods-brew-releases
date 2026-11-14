@@ -1,0 +1,65 @@
+{
+  "version": "0.4.4",
+  "sourceSha": "8eb347afa633cb88187b703cd04f5a8234c409ff",
+  "windowsAcceptanceRun": 43543976858,
+  "filename": "Backwoods-Employees-Setup-0.4.4.exe",
+  "size": 172688278,
+  "sha256": "159089da0780a4ffd54559c60e60b4f29a01000640b1ebf5fd33a0852d7b2a6a",
+  "parts": [
+    {
+      "name": "installer.part000",
+      "size": 16777216,
+      "sha256": "84ecb131ff03c9c7385f3b444c801d0dd33e3485b0aed5a9cded323547f1ea75"
+    },
+    {
+      "name": "installer.part001",
+      "size": 16777216,
+      "sha256": "84c7d3e6ff25ced406917cad4e6b60876b845ae8b48e72bce414661fa560cae6"
+    },
+    {
+      "name": "installer.part002",
+      "size": 16777216,
+      "sha256": "bcbcce73682703fabdf10f1e2cdea6a8785d475b071872fbaea9ad9acc3d061d"
+    },
+    {
+      "name": "installer.part003",
+      "size": 16777216,
+      "sha256": "0dfc9f66af9aa130568ef11b58ff37ef5bfebb11262ca18ebef29f1f05476a34"
+    },
+    {
+      "name": "installer.part004",
+      "size": 16777216,
+      "sha256": "e122c1453e96441cfd7fec4ae931c5a8cf61360d281bba2b66eab1934063813d"
+    },
+    {
+      "name": "installer.part005",
+      "size": 16777216,
+      "sha256": "0e70b1143e857d3ff8bba6c81beded6f9892e2114387d08770b03f2ae8bdfa01"
+    },
+    {
+      "name": "installer.part006",
+      "size": 16777216,
+      "sha256": "c0f66544f8dcf39eee92a85ed02b8976964e3a15c6456c665d40caeb5e2bad94"
+    },
+    {
+      "name": "installer.part007",
+      "size": 16777216,
+      "sha256": "5b08a9d6106835860e4b3fb1eecb4e6a04066a1f3ccaaf2156bf3d4174b1e03c"
+    },
+    {
+      "name": "installer.part008",
+      "size": 16777216,
+      "sha256": "64e02b54de86085d6cfbd6ce3b4d01b1b8e2fb0e2e37c4bad1fbf16eb955fd38"
+    },
+    {
+      "name": "installer.part009",
+      "size": 16777216,
+      "sha256": "5c5e99bc133ae08b3bd3db4e0b2572ee6b29d4f56f9e21241971d244894a6e92"
+    },
+    {
+      "name": "installer.part010",
+      "size": 4916118,
+      "sha256": "0a7d054689959995b3a42584d35ad2782a1546d7836d29df2925816dbee6440b"
+    }
+  ]
+}

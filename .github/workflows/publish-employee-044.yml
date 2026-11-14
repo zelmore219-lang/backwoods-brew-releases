@@ -1,0 +1,32 @@
+name: Publish verified Employee paper onboarding 0.4.4
+on:
+  push:
+    branches: [codex/publish-employee-0.4.4]
+    paths: [.build-payload/READY]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconstruct and verify the accepted installer
+        run: python .build-payload/reconstruct.py
+      - name: Publish and verify installer before updating the Employee feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python .build-payload/publish.py
+          --installer /tmp/Backwoods-Employees-Setup-0.4.4.exe
+          --version 0.4.4
+          --source-sha 8eb347afa633cb88187b703cd04f5a8234c409ff
+          --acceptance-run 43543976858
+          --notes .build-payload/RELEASE-NOTES.md
+          --owner-guide .build-payload/OWNER-ONBOARDING-CHECKLIST.md
+          --publish
