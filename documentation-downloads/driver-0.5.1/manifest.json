@@ -1,0 +1,94 @@
+{
+  "app": "driver",
+  "version": "0.5.1",
+  "tag": "driver-0.5.1",
+  "archive": {
+    "name": "Backwoods-Driver-0.5.1-Complete-Documentation.zip",
+    "size": 21100705,
+    "sha256": "fc949322556c019304b6a80e7ae034083d9942db9d0419df35fc21f3947d4a56",
+    "parts": [
+      {
+        "path": "documentation-downloads/driver-0.5.1/documents.part000",
+        "size": 7340032,
+        "sha256": "92035fcc2e83a688514fabd9937ec87afc9429506061767eb62e479cabd3aa81"
+      },
+      {
+        "path": "documentation-downloads/driver-0.5.1/documents.part001",
+        "size": 7340032,
+        "sha256": "7835bce0c0e5003db86954317e383526723b26e5c73032d4cc9ccf64d884cc80"
+      },
+      {
+        "path": "documentation-downloads/driver-0.5.1/documents.part002",
+        "size": 6420641,
+        "sha256": "988e1d3b0d3d1957b5e0afe67a53ae4619bf7cc26b86a40c133ca670df658375"
+      }
+    ]
+  },
+  "files": [
+    {
+      "name": "Backwoods-Driver-0.5.1-Administrator-Manual.docx",
+      "size": 1840641,
+      "sha256": "e83bce56a013405ed600c0e40b91b80dc02d39a1cc8731c12a24a47349c63426"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Administrator-Manual.pdf",
+      "size": 2336176,
+      "sha256": "14778280b250d68f9bf593ba96f874cf247dc4893c78121903030c62b4790407"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Complete-Documentation.zip",
+      "size": 21100705,
+      "sha256": "fc949322556c019304b6a80e7ae034083d9942db9d0419df35fc21f3947d4a56"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Complete-User-Manual.docx",
+      "size": 3780379,
+      "sha256": "ae93ee9ff46f2a8167fbed42a0a4f3549837151df234cba127a35c28c3e69edd"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Complete-User-Manual.pdf",
+      "size": 4697822,
+      "sha256": "b1090e8fd684a40db75b2a9fabf62188eb75fff16354705a05d4f6a4c508408e"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Employee-Training-Guide.docx",
+      "size": 1281622,
+      "sha256": "ba40bc995bf39d81613035b3da6bf25862848850915b7ab3c8c4481010c7102f"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Employee-Training-Guide.pdf",
+      "size": 1625935,
+      "sha256": "5afda2f25ad25abf2351a0c22dff096f0efdd8346e403cf0583a01ba875fbebe"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Feature-Checklist.csv",
+      "size": 37638,
+      "sha256": "84888f65f5104070c0b29ac45291b52244054eff73cc56d884a4e190412057e8"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Feature-Checklist.xlsx",
+      "size": 24049,
+      "sha256": "b13d4ccf1b694fff65f5df6d33af5e4ef9ba937012bb14e780fdd59131d94089"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Feature-Verification-Report.docx",
+      "size": 366892,
+      "sha256": "239ad3486d166195668969b31d23c6d598f981d61b2db86f5f394a5afea813bc"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Feature-Verification-Report.pdf",
+      "size": 615575,
+      "sha256": "75a2b11c4a740ecb40ce564e7960558123bafd9ed555cf313e412ea8773298c6"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Troubleshooting-Guide.docx",
+      "size": 353060,
+      "sha256": "42ff567bea91bd1e515d2c4b0b1be22d237e52d9288427d62344f7f0e5b35acd"
+    },
+    {
+      "name": "Backwoods-Driver-0.5.1-Troubleshooting-Guide.pdf",
+      "size": 519420,
+      "sha256": "165100417fe58d445128dd1e2792c1ca1eeeeddc445c62c6146207d979e41a67"
+    }
+  ]
+}

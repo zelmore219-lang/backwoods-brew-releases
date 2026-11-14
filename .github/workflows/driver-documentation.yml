@@ -1,0 +1,28 @@
+name: Publish verified Driver documentation downloads
+on:
+  push:
+    branches: [codex/driver-documentation-downloads]
+    paths: [documentation-downloads/**, scripts/publish_driver_documentation.py, .github/workflows/driver-documentation.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: driver-documentation-downloads
+  cancel-in-progress: false
+jobs:
+  publish-documents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            documentation-downloads
+            scripts
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Publish and verify documentation only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_driver_documentation.py
