@@ -1,0 +1,45 @@
+{
+  "version": "0.5.2",
+  "filename": "Backwoods-Driver-Setup-0.5.2.exe",
+  "sourceSha": "669b72d635ec002fadbe552bacac9599e268ffdc",
+  "windowsAcceptanceRun": 43675679450,
+  "sha256": "626606fe4e115c99455387c52d3a24887af61e9bc8b37974c02a06517fc01293",
+  "size": 115341669,
+  "parts": [
+    {
+      "name": "installer.part000",
+      "size": 16777216,
+      "sha256": "e7dcadd651cf394d503af0e29b50ade6f9dfc46eaa6ace96c5cd59ef7f2e1678"
+    },
+    {
+      "name": "installer.part001",
+      "size": 16777216,
+      "sha256": "a9ffd9c8c368d9fb18678b7307e049eceef1bd74ba0ceae5384c5e34da6999df"
+    },
+    {
+      "name": "installer.part002",
+      "size": 16777216,
+      "sha256": "3acc85268db4044eb88bc34080c411159cf5b22549e6b1272468df8af6db7387"
+    },
+    {
+      "name": "installer.part003",
+      "size": 16777216,
+      "sha256": "9c1819f170c9f9c8d41a0df929d9873819d891c7e9902384889af3ccfed02b7d"
+    },
+    {
+      "name": "installer.part004",
+      "size": 16777216,
+      "sha256": "5dace8ae401b7bf3cb593d96cf32b1eaf986e3e54be15231473524a1304ee27c"
+    },
+    {
+      "name": "installer.part005",
+      "size": 16777216,
+      "sha256": "abc68234aab1bbcb17b33465091dbeb986bea3d5356327cfece38bd5a4c6b41f"
+    },
+    {
+      "name": "installer.part006",
+      "size": 14678373,
+      "sha256": "19996b4ac2e201431baf2d36fba501f7bfd2d6438f883fd407800c60a44fdaaa"
+    }
+  ]
+}

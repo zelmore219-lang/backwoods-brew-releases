@@ -1,0 +1,56 @@
+{
+  "run": {
+    "id": 43675679450,
+    "head_sha": "669b72d635ec002fadbe552bacac9599e268ffdc",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/zelmore219-lang/driver_routeplanner/actions/runs/43675679450"
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "id": 132695187335,
+        "name": "windows",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/zelmore219-lang/driver_routeplanner/actions/runs/43675679450/job/132695187335"
+      },
+      {
+        "id": 132695187589,
+        "name": "android",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/zelmore219-lang/driver_routeplanner/actions/runs/43675679450/job/132695187589"
+      }
+    ]
+  },
+  "releases": [
+    {
+      "id": 445802303,
+      "tag_name": "driver-ci-669b72d635ec002fadbe552bacac9599e268ffdc",
+      "draft": true,
+      "assets": [
+        {
+          "name": "Backwoods-Driver-Setup-0.5.2.exe",
+          "size": 115341669,
+          "digest": "sha256:626606fe4e115c99455387c52d3a24887af61e9bc8b37974c02a06517fc01293"
+        },
+        {
+          "name": "Backwoods-Driver-Setup-0.5.2.exe.sha256",
+          "size": 100,
+          "digest": "sha256:13b5d8007dc41ab86854a51f9fbfaf3d40cf4bafffdc7435bd8bf9151addb1f1"
+        },
+        {
+          "name": "driver-next-unsigned.apk",
+          "size": 10870381,
+          "digest": "sha256:52eb495e9a353d2df168b64f495d5f3f77b831b196bc6008a9daff8b34c9ac8b"
+        },
+        {
+          "name": "driver-original-unsigned.apk",
+          "size": 10870341,
+          "digest": "sha256:7d0aa923ff71f262afc4c162ebefcdaf2e456b0fe2b8899f13cee7854101d081"
+        }
+      ]
+    }
+  ]
+}

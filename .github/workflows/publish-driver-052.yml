@@ -1,0 +1,30 @@
+name: Publish accepted Driver Windows 0.5.2
+on:
+  push:
+    branches: [codex/publish-driver-0.5.2]
+    paths: [.driver-payload/READY]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Reconstruct exact accepted bytes
+        run: python .driver-payload/reconstruct.py
+      - name: Publish Windows update and retain the Android feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python .driver-payload/publish.py
+          --installer /tmp/Backwoods-Driver-Setup-0.5.2.exe
+          --version 0.5.2
+          --source-sha 669b72d635ec002fadbe552bacac9599e268ffdc
+          --acceptance-run 43675679450
+          --notes .driver-payload/RELEASE-NOTES.md
+          --owner-guide .driver-payload/OWNER-GUIDE.md
+          --publish
