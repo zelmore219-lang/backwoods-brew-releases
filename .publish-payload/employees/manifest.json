@@ -1,0 +1,75 @@
+{
+  "version": "0.4.8",
+  "sourceRepository": "zelmore219-lang/backwoods-brew-android",
+  "sourceSha": "31f70c915e2a33e63e8c47bac51e8acaaf2b29c5",
+  "acceptanceRun": 43718914075,
+  "tag": "employees-0.4.8",
+  "feedTag": "employee-updates",
+  "feedName": "backwoods-employees-updates.json",
+  "installer": "Backwoods-Employees-Setup-0.4.8.exe",
+  "notes": "Windows 0.4.8: verified Pest account linking, Pest department jobs/shared clock with office review, and owner-authorized private billing projection for same-company Accounting. Preserves drafts, paper onboarding, server checks, existing shared time, PTO and pay estimates. Existing signed Android entry retained. See OWNER-GUIDE.md.",
+  "files": [
+    {
+      "name": "Backwoods-Employees-Setup-0.4.8.exe",
+      "size": 172653277,
+      "sha256": "335bc8cd6479ac0274dcf1044540b7277026a56610039be7a6a3bb2b7e57313d",
+      "parts": [
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part000",
+          "size": 16777216,
+          "sha256": "7bcf517fba794dbf98fa0d19648ce3a21f775c0ccac41419891c1fb0df34e16c"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part001",
+          "size": 16777216,
+          "sha256": "087aba6832ef5c652729fb461c7e90584f25fb81db84237a314fa400bdbc59e0"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part002",
+          "size": 16777216,
+          "sha256": "e13b6cba1ebd4db4ddc4c4c9be1f8a2e9dfd41964894c637c5bee3d1549b0ab1"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part003",
+          "size": 16777216,
+          "sha256": "ccefc74d3d9ad1e48f3d11d11767d0c73e79a6efa2427cd3b4ef37f8bce3e93d"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part004",
+          "size": 16777216,
+          "sha256": "9802fedf8ca75f224fac9fdedb69da37c348e322003336e72d02aaa6c7c48db5"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part005",
+          "size": 16777216,
+          "sha256": "1906578c985ce749d24959c6d8d23da3960dc1f5e32527f1c1902170dc3c11a6"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part006",
+          "size": 16777216,
+          "sha256": "5e243d0d8ae04b2b879cfccf6a3bbb2933d1cd95cfcba9000b52e8c359de7ece"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part007",
+          "size": 16777216,
+          "sha256": "7d9ece6a2f1cf74aa45660d3e13e4a1b176deda95f2ab075416da4d778f201b5"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part008",
+          "size": 16777216,
+          "sha256": "8086a91c7e0feb4f6f25a5999111f223f904438f674ed03d66f2ccd39959fe46"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part009",
+          "size": 16777216,
+          "sha256": "e6469eb1f65c9ae7a30a3471bbd98c9471f45f63d2cd8252f9f96476a3241cc0"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.8.exe.part010",
+          "size": 4881117,
+          "sha256": "38957eb937c2a89004c8d3ff17b34b0b08fc7c909ecdba2a1d1cfc56ac5f0051"
+        }
+      ]
+    }
+  ]
+}

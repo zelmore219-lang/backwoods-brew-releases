@@ -179,7 +179,7 @@ def publish(app, check_only=False):
         guide.write_bytes((ROOT / 'OWNER-GUIDE.md').read_bytes())
         if release['draft']:
             upload(release, files + [checksums, provenance, acceptance, guide])
-            api('releases/' + str(release['id']), 'PATCH', {'draft': False, 'make_latest': 'false'})
+            api('releases/' + str(release['id']), 'PATCH', {'tag_name': manifest['tag'], 'target_commitish': release['target_commitish'], 'draft': False, 'make_latest': 'false'})
         else:
             for f in manifest['files']:
                 asset = next(a for a in release['assets'] if a['name'] == f['name'])
@@ -198,7 +198,7 @@ def publish(app, check_only=False):
         if replacement != original:
             if current['draft']:
                 upload(current, [feed])
-                api('releases/' + str(current['id']), 'PATCH', {'draft': False, 'make_latest': 'false'})
+                api('releases/' + str(current['id']), 'PATCH', {'tag_name': manifest['feedTag'], 'target_commitish': current['target_commitish'], 'draft': False, 'make_latest': 'false'})
             else:
                 subprocess.run(['gh', 'release', 'upload', manifest['feedTag'], str(feed), '--repo', REPO, '--clobber'], check=True)
         for attempt in range(7):
