@@ -1,0 +1,429 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Existing rules supplied by the company owner; whitespace normalized.
+    function signedIn() { return request.auth != null; }
+    function adminEmail() { return signedIn() && request.auth.token.email == 'admin@backwoodsbrew-e3584-d52a3.firebaseapp.com'; }
+    function activeProfilePath() { return /databases/$(database)/documents/usersByUid/$(request.auth.uid); }
+    function userProfilePath(username) { return /databases/$(database)/documents/users/$(username); }
+    function hasActiveProfile() { return signedIn() && exists(activeProfilePath()) && get(activeProfilePath()).data.active == true; }
+    function role() { return get(activeProfilePath()).data.role; }
+    function isManager() { return adminEmail() || (hasActiveProfile() && role() in ['owner','admin','administrator','manager']); }
+    function keepsSameAccess() { return request.resource.data.authUid == request.auth.uid && request.resource.data.role == resource.data.role && request.resource.data.active == resource.data.active; }
+    function adminUidProfileWrite(uid) { return adminEmail() && request.auth.uid == uid && request.resource.data.authUid == request.auth.uid && request.resource.data.username == 'admin' && request.resource.data.role == 'owner' && request.resource.data.active == true; }
+    function adminUsernameProfileWrite(username) { return adminEmail() && username == 'admin' && request.resource.data.authUid == request.auth.uid && request.resource.data.username == 'admin' && request.resource.data.role == 'owner' && request.resource.data.active == true; }
+    function usernameProfileBelongsToSignedInUser(username) { return signedIn() && exists(userProfilePath(username)) && get(userProfilePath(username)).data.authUid == request.auth.uid && get(userProfilePath(username)).data.active == true; }
+    function selfUidProfileCreate(uid) { return signedIn() && request.auth.uid == uid && request.resource.data.authUid == request.auth.uid && request.resource.data.active == true && request.resource.data.role in ['owner','admin','administrator','manager','lead','accountant','kitchen','employee'] && usernameProfileBelongsToSignedInUser(request.resource.data.username) && request.resource.data.role == get(userProfilePath(request.resource.data.username)).data.role; }
+
+    match /usersByUid/{uid} {
+      allow read: if isManager() || (signedIn() && request.auth.uid == uid);
+      allow create: if isManager() || adminUidProfileWrite(uid) || selfUidProfileCreate(uid);
+      allow update: if isManager() || adminUidProfileWrite(uid) || (signedIn() && request.auth.uid == uid && keepsSameAccess());
+      allow delete: if false;
+    }
+    match /users/{username} {
+      allow get: if isManager() || (signedIn() && resource.data.authUid == request.auth.uid && resource.data.active == true) || (adminEmail() && username == 'admin');
+      allow list: if isManager();
+      allow create: if isManager() || adminUsernameProfileWrite(username);
+      allow update: if isManager() || adminUsernameProfileWrite(username) || (signedIn() && resource.data.authUid == request.auth.uid && keepsSameAccess());
+      allow delete: if false;
+    }
+    match /appData/{document} {
+      allow read, create, update: if document == 'main' && hasActiveProfile();
+      allow delete: if document == 'main' && isManager();
+    }
+    match /appSettings/{document} {
+      allow read: if document == 'global' && hasActiveProfile();
+      allow create, update: if document == 'global' && isManager();
+      allow delete: if false;
+    }
+    match /schedules/{document} {
+      allow read: if hasActiveProfile();
+      allow create, update, delete: if isManager();
+    }
+
+    function vendorProfilePath() { return /databases/$(database)/documents/vendorUsers/$(request.auth.uid); }
+    function hasVendorProfile() { return signedIn() && exists(vendorProfilePath()); }
+    function hasActiveVendorProfile() { return hasVendorProfile() && get(vendorProfilePath()).data.active == true; }
+    function vendorRole() { return get(vendorProfilePath()).data.role; }
+    function isVendorOwner() { return adminEmail() || (hasActiveVendorProfile() && vendorRole() == 'owner'); }
+    function isVendorManager() { return adminEmail() || (hasActiveVendorProfile() && vendorRole() in ['owner','admin','administrator','manager']); }
+    function isVendorAccounting() { return isVendorManager() || (hasActiveVendorProfile() && vendorRole() in ['accountant','accounting']); }
+    function isVendorDriver() { return hasActiveVendorProfile() && vendorRole() in ['owner','admin','administrator','manager','driver']; }
+    function isVendorWarehouse() { return hasActiveVendorProfile() && vendorRole() in ['owner','admin','administrator','manager','warehouse','packer','inventory']; }
+    function adminVendorBootstrap(uid) { return adminEmail() && request.auth.uid == uid && request.resource.data.authUid == request.auth.uid && request.resource.data.email == 'admin@backwoodsbrew-e3584-d52a3.firebaseapp.com' && request.resource.data.username == 'admin' && request.resource.data.role == 'owner' && request.resource.data.active == true; }
+    function vendorUserKeepsAccess() { return request.resource.data.authUid == resource.data.authUid && request.resource.data.role == resource.data.role && request.resource.data.active == resource.data.active; }
+
+    match /vendorUsers/{uid} {
+      allow get: if isVendorManager() || (signedIn() && request.auth.uid == uid);
+      allow list: if isVendorManager();
+      allow create: if isVendorManager() || adminVendorBootstrap(uid);
+      allow update: if isVendorManager() || (signedIn() && request.auth.uid == uid && vendorUserKeepsAccess());
+      allow delete: if isVendorOwner();
+    }
+    match /vendorCustomers/{customerId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if hasActiveVendorProfile();
+      allow delete: if isVendorManager();
+    }
+    function productionStockSafe() {
+      return (!resource.data.get('productionManaged', false) && !request.resource.data.get('productionManaged', false)) ||
+        (resource.data.get('productionManaged', false) && request.resource.data.get('productionManaged', false) &&
+         request.resource.data.productionSourceId == resource.data.productionSourceId &&
+         request.resource.data.sku == resource.data.sku && request.resource.data.unit == resource.data.unit &&
+         request.resource.data.stockRevision is int &&
+         ((!request.resource.data.diff(resource.data).affectedKeys().hasAny(['onHand','reserved','cost','damagedStock','expiredStock','quarantineStock']) && request.resource.data.stockRevision == resource.data.stockRevision) ||
+          (request.resource.data.diff(resource.data).affectedKeys().hasAny(['onHand','reserved','cost','damagedStock','expiredStock','quarantineStock']) && request.resource.data.stockRevision == resource.data.stockRevision + 1)) &&
+         request.resource.data.onHand >= 0 && request.resource.data.reserved >= 0 && request.resource.data.reserved <= request.resource.data.onHand);
+    }
+    match /vendorProducts/{productId} {
+      allow read: if hasActiveVendorProfile();
+      allow create: if (isVendorManager() || isVendorWarehouse()) && !request.resource.data.get('productionManaged', false);
+      allow update: if (isVendorManager() || isVendorWarehouse()) && productionStockSafe();
+      allow delete: if isVendorManager() && !resource.data.get('productionManaged', false);
+      match /stockOperations/{operationId} {
+        allow read: if hasActiveVendorProfile();
+        allow create: if (isVendorManager() || isVendorWarehouse()) && request.resource.data.uid == request.auth.uid &&
+          request.resource.data.keys().hasOnly(['uid','token','revision','createdAt']) &&
+          request.resource.data.revision == getAfter(/databases/$(database)/documents/vendorProducts/$(productId)).data.stockRevision;
+        allow update, delete: if false;
+      }
+    }
+    match /vendorOrders/{orderId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if hasActiveVendorProfile();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if hasActiveVendorProfile();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorPacking/{packingId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorManager() || isVendorWarehouse();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if isVendorManager() || isVendorWarehouse();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorRoutes/{routeId} {
+      allow read: if hasActiveVendorProfile();
+      allow create: if isVendorManager();
+      allow update: if isVendorManager() || isVendorDriver();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if isVendorManager() || isVendorDriver();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorDeliveries/{deliveryId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorManager() || isVendorDriver();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if isVendorManager() || isVendorDriver();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorProofOfDelivery/{proofId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorManager() || isVendorDriver();
+      allow delete: if isVendorManager();
+    }
+    match /vendorReturns/{returnId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if hasActiveVendorProfile();
+      allow delete: if isVendorManager();
+    }
+    match /vendorInventory/{inventoryId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorManager() || isVendorWarehouse();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if isVendorManager() || isVendorWarehouse();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorInventoryMovements/{movementId} {
+      allow read: if isVendorManager() || isVendorWarehouse() || isVendorDriver() || isVendorAccounting() || (hasActiveVendorProfile() && vendorRole() == 'sales');
+      allow create: if isVendorManager() || isVendorWarehouse() || isVendorDriver();
+      allow update, delete: if false;
+    }
+    match /vendorSuppliers/{supplierId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update, delete: if isVendorManager();
+    }
+    match /vendorPurchasing/{purchaseId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorManager() || isVendorWarehouse();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if isVendorManager() || isVendorWarehouse();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorPurchaseOrders/{purchaseOrderId} {
+      allow read, create, update: if isVendorManager() || isVendorWarehouse() || isVendorAccounting();
+      allow delete: if isVendorManager();
+    }
+    match /vendorPurchaseReceipts/{receiptId} {
+      allow read: if isVendorManager() || isVendorWarehouse() || isVendorAccounting();
+      allow create: if isVendorManager() || isVendorWarehouse();
+      allow update, delete: if false;
+    }
+    match /vendorSupplierInvoices/{supplierInvoiceId} {
+      allow read, create, update: if isVendorAccounting();
+      allow delete: if isVendorManager();
+    }
+    match /vendorInvoices/{invoiceId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorAccounting();
+      allow delete: if isVendorManager();
+      match /{subdocument=**} {
+        allow read: if hasActiveVendorProfile();
+        allow create, update: if isVendorAccounting();
+        allow delete: if isVendorManager();
+      }
+    }
+    match /vendorPayments/{paymentId} {
+      allow read, create, update: if isVendorAccounting();
+      allow delete: if isVendorOwner();
+    }
+    match /vendorCredits/{creditId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorAccounting();
+      allow delete: if isVendorManager();
+    }
+    match /vendorRecurringOrders/{recurringOrderId} {
+      allow read: if isVendorAccounting() || (hasActiveVendorProfile() && vendorRole() == 'sales');
+      allow create, update: if isVendorManager() || (hasActiveVendorProfile() && vendorRole() == 'sales');
+      allow delete: if isVendorManager();
+    }
+    match /vendorDriverSettlements/{settlementId} {
+      allow read, create: if isVendorAccounting();
+      allow update, delete: if false;
+    }
+    match /vendorNotifications/{notificationId} {
+      allow read: if hasActiveVendorProfile();
+      allow create: if isVendorManager() || (hasActiveVendorProfile() && vendorRole() in ['sales','driver'] && request.resource.data.get('type','') in ['route_visit','route_closeout']);
+      allow update: if isVendorManager() || (hasActiveVendorProfile() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read','readAt'])) || (hasActiveVendorProfile() && vendorRole() in ['sales','driver'] && resource.data.get('type','') in ['route_visit','route_closeout'] && request.resource.data.get('type','') == resource.data.get('type',''));
+      allow delete: if isVendorManager();
+    }
+    match /vendorSettings/{settingId} {
+      allow read: if hasActiveVendorProfile();
+      allow create, update: if isVendorManager();
+      allow delete: if isVendorOwner();
+    }
+    match /vendorReports/{reportId} {
+      allow read: if isVendorAccounting() || isVendorManager();
+      allow create, update: if isVendorManager();
+      allow delete: if isVendorOwner();
+    }
+    match /vendorAuditLogs/{logId} {
+      allow read: if isVendorManager();
+      allow create: if hasActiveVendorProfile();
+      allow update, delete: if false;
+    }
+    match /vendorBackups/{backupId} { allow read, create, update, delete: if isVendorOwner(); }
+    match /vendorCloudBackups/{backupId} { allow read, create, update, delete: if isVendorOwner(); }
+
+
+    // BEGIN AUTOMATIC ACCOUNTING ADDITION
+    // Merge these matches INSIDE the existing /databases/{database}/documents block.
+    // Do not replace the source apps' existing rules with this fragment.
+    // Existing broad catch-all grants must not override these protections.
+    match /businessAccounting/{ownerUid}/sources/{source} {
+      function owner() { return signedIn() && request.auth.uid == ownerUid && (adminEmail() || (hasActiveProfile() && role() in ['owner','admin','administrator']) || isVendorOwner()); }
+      function validSource() { return source in ['main', 'vendor', 'production']; }
+      allow read: if owner() && validSource();
+      allow create, update: if owner() && validSource()
+        && request.resource.data.keys().hasOnly(['schemaVersion','generation','sha256','chunkCount','bytes','exportedAt'])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.generation is string
+        && request.resource.data.generation.matches('[a-fA-F0-9-]{36}')
+        && request.resource.data.sha256 is string
+        && request.resource.data.sha256.matches('[a-f0-9]{64}')
+        && request.resource.data.chunkCount is int
+        && request.resource.data.chunkCount >= 1 && request.resource.data.chunkCount <= 175
+        && request.resource.data.bytes is int
+        && request.resource.data.bytes > (request.resource.data.chunkCount-1)*240000
+        && request.resource.data.bytes <= request.resource.data.chunkCount*240000
+        && request.resource.data.bytes <= 41943040
+        && request.resource.data.exportedAt is string && request.resource.data.exportedAt.size() <= 40;
+      allow delete: if false;
+      match /generations/{generation}/chunks/{chunk} {
+        allow read: if owner() && validSource();
+        allow create: if owner() && validSource()
+          && generation.matches('[a-fA-F0-9-]{36}')
+          && chunk.matches('(00[0-9]{2}|01[0-6][0-9]|017[0-4])')
+          && request.resource.data.keys().hasOnly(['data'])
+          && request.resource.data.data is string
+          && request.resource.data.data.size() <= 320000;
+        allow update: if false;
+        allow delete: if owner() && validSource() && generation != get(/databases/$(database)/documents/businessAccounting/$(ownerUid)/sources/$(source)).data.generation;
+      }
+    }
+
+    // Installed Windows/Android engines share one compressed accounting ledger.
+    // No Cloud Functions, Firebase Hosting, external host, or billing upgrade.
+    match /businessAccounting/{ownerUid}/ledger/state {
+      function ledgerOwner() {
+        return signedIn() && request.auth.uid == ownerUid
+          && (adminEmail() || (hasActiveProfile() && role() in ['owner','admin','administrator']) || isVendorOwner());
+      }
+      function leaseOnlyChange() {
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lockedBy','lockedAt']);
+      }
+      function validBook() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['ledgerId','generation','sha256','sqliteSha256','chunkCount','bytes','rawBytes','codec','lockedBy','lockedAt','previousGeneration','previousChunkCount'])
+          && ((!('generation' in d) && d.keys().hasOnly(['lockedBy','lockedAt']))
+            || (d.ledgerId is string && d.ledgerId.matches('[a-f0-9-]{36}')
+              && d.generation is string && d.generation.matches('[a-f0-9-]{36}')
+              && d.sha256 is string && d.sha256.matches('[a-f0-9]{64}')
+              && d.sqliteSha256 is string && d.sqliteSha256.matches('[a-f0-9]{64}')
+              && d.codec == 'zlib-sqlite-v1'
+              && d.chunkCount is int && d.chunkCount >= 1 && d.chunkCount <= 280
+              && d.bytes is int && d.bytes > (d.chunkCount-1)*240000 && d.bytes <= d.chunkCount*240000 && d.bytes <= 67108864
+              && d.rawBytes is int && d.rawBytes > 0 && d.rawBytes <= 67108864
+              && d.previousGeneration is string && (d.previousGeneration == '' || d.previousGeneration.matches('[a-f0-9-]{36}'))
+              && d.previousChunkCount is int && d.previousChunkCount >= 0 && d.previousChunkCount <= 280));
+      }
+      allow read: if ledgerOwner();
+      allow create: if ledgerOwner() && validBook()
+        && request.resource.data.lockedBy is string && request.resource.data.lockedBy.matches('[a-f0-9-]{36}')
+        && request.resource.data.lockedAt == request.time;
+      allow update: if ledgerOwner() && validBook()
+        && request.resource.data.lockedBy is string
+        && (request.resource.data.lockedBy == '' || request.resource.data.lockedBy.matches('[a-f0-9-]{36}'))
+        && request.resource.data.lockedAt == request.time
+        && ((resource.data.lockedBy != '' && request.resource.data.lockedBy == resource.data.lockedBy)
+          || (leaseOnlyChange() && (request.resource.data.lockedBy == '' || resource.data.lockedBy == '' || resource.data.lockedAt < request.time-duration.value(600,'s'))));
+      allow delete: if false;
+      match /generations/{generation}/chunks/{chunk} {
+        allow read: if ledgerOwner();
+        allow create: if ledgerOwner() && generation.matches('[a-f0-9-]{36}') && chunk.matches('[0-9]{4}')
+          && request.resource.data.keys().hasOnly(['data']) && request.resource.data.data is string && request.resource.data.data.size() <= 320000
+          && get(/databases/$(database)/documents/businessAccounting/$(ownerUid)/ledger/state).data.lockedBy != ''
+          && get(/databases/$(database)/documents/businessAccounting/$(ownerUid)/ledger/state).data.lockedAt > request.time-duration.value(600,'s');
+        allow update: if false;
+        allow delete: if ledgerOwner()
+          && generation != get(/databases/$(database)/documents/businessAccounting/$(ownerUid)/ledger/state).data.get('generation','')
+          && generation != get(/databases/$(database)/documents/businessAccounting/$(ownerUid)/ledger/state).data.get('previousGeneration','');
+      }
+    }
+    // END AUTOMATIC ACCOUNTING ADDITION
+
+    // DENY ALL OTHER FIRESTORE ACCESS
+    match /{document=**} { allow read, write: if false; }
+      // Employee owner-host relay. Administrator credentials are never client data.
+    function employeeRelayAccess(scope) {
+      let path = /databases/$(database)/documents/employeeAccess/$(request.auth.uid);
+      return request.auth != null && exists(path)
+        && request.auth.token.auth_time >= get(path).data.passwordValidAfter
+        && ((scope == 'management' && get(path).data.active == true)
+          || (scope == 'account' && get(path).data.accountActive == true));
+    }
+    function employeeRelayOwnRequest(id) {
+      return request.auth != null
+        && get(/databases/$(database)/documents/employeeRequests/$(id)).data.uid == request.auth.uid;
+    }
+    match /employeeService/{id} {
+      // Public configuration contains only protocol, project and public key.
+      allow get: if id == 'config' || (id == 'status' && employeeRelayAccess('management'));
+      allow list, create, update, delete: if false;
+    }
+    match /employeeAccess/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, create, update, delete: if false;
+    }
+    match /employeeViews/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid && employeeRelayAccess('management');
+      allow list, create, update, delete: if false;
+      match /generations/{generation}/parts/{part} {
+        allow get: if request.auth != null && request.auth.uid == uid && employeeRelayAccess('management');
+        allow list, create, update, delete: if false;
+      }
+    }
+    match /employeeRequests/{id} {
+      // Old credentials may retrieve their own encrypted receipt, including the
+      // result of the password change that revoked that credential. New requests
+      // always require current access and auth_time. No fresh data is read here.
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['uid','requestId','protocol','scope','peer','hash','count','state','createdAt','authTime'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.requestId == id && id.matches('^[A-Za-z0-9_-]{20,100}$')
+        && request.resource.data.protocol == 'backwoods-employee-relay-v1'
+        && request.resource.data.scope in ['management','account']
+        && employeeRelayAccess(request.resource.data.scope)
+        && request.resource.data.authTime == request.auth.token.auth_time
+        && request.resource.data.peer is string && request.resource.data.peer.size() <= 128
+        && request.resource.data.hash is string && request.resource.data.hash.matches('^[a-f0-9]{64}$')
+        && request.resource.data.count is int && request.resource.data.count >= 1 && request.resource.data.count <= 80
+        && request.resource.data.state == 'uploading' && request.resource.data.createdAt == request.time;
+      allow update: if request.auth != null && resource.data.uid == request.auth.uid
+        && employeeRelayAccess(resource.data.scope)
+        && resource.data.authTime == request.auth.token.auth_time
+        && resource.data.state == 'uploading' && request.resource.data.state == 'pending'
+        && request.resource.data.readyAt == request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['state','readyAt']);
+      allow delete: if false;
+      match /requestParts/{part} {
+        allow read: if employeeRelayOwnRequest(id);
+        allow create: if employeeRelayOwnRequest(id)
+          && employeeRelayAccess(get(/databases/$(database)/documents/employeeRequests/$(id)).data.scope)
+          && get(/databases/$(database)/documents/employeeRequests/$(id)).data.state == 'uploading'
+          && part.matches('^[0-9]{4}$') && request.resource.data.keys().hasOnly(['data'])
+          && request.resource.data.data is string && request.resource.data.data.size() > 0 && request.resource.data.data.size() <= 240000;
+        allow update: if employeeRelayOwnRequest(id)
+          && employeeRelayAccess(get(/databases/$(database)/documents/employeeRequests/$(id)).data.scope)
+          && get(/databases/$(database)/documents/employeeRequests/$(id)).data.state == 'uploading'
+          && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+      match /responseParts/{part} {
+        allow read: if employeeRelayOwnRequest(id);
+        allow create, update, delete: if false;
+      }
+    }
+    match /employeePrivate/{document=**} {
+      allow read, write: if false;
+    }
+
+// Employee Management owns these profiles through its private owner service.
+// A managed denial overrides legacy Driver access; no client can grant itself
+// Driver permissions or turn a Driver grant into Wholesale financial access.
+function driverProfilePath(uid) {
+  let managed=/databases/$(database)/documents/driverUsers/$(uid);
+  return exists(managed)?managed:/databases/$(database)/documents/vendorUsers/$(uid);
+}
+function activeDriverUid(uid) {
+  let managed=/databases/$(database)/documents/driverUsers/$(uid);
+  let legacy=/databases/$(database)/documents/vendorUsers/$(uid);
+  return signedIn() && (exists(managed)
+    ? (get(managed).data.authUid==uid && get(managed).data.active==true && !get(managed).data.get('mustResetPassword',false) && get(managed).data.role=='driver')
+    : (exists(legacy) && get(legacy).data.active==true && get(legacy).data.role=='driver'));
+}
+function activeDriver(){return activeDriverUid(request.auth.uid);}
+function hasDriverWorkspaceAccess(){return activeDriver() || isVendorManager();}
+match /driverUsers/{uid} {
+  allow get: if signedIn() && (request.auth.uid==uid || isVendorManager());
+  allow list: if isVendorManager();
+  allow write: if false;
+}
+match /vendorCustomers/{id} {allow read: if activeDriver();}
+match /vendorProducts/{id} {allow read: if activeDriver();}
+match /vendorSettings/{id} {allow get: if id=='company' && activeDriver();}
+match /vendorRoutes/{id} {allow read: if activeDriver() && resource.data.driverId==request.auth.uid;}
+match /vendorOrders/{id} {allow read: if activeDriver() && (resource.data.get('driverId','')==request.auth.uid || get(/databases/$(database)/documents/vendorRoutes/$(resource.data.routeId)).data.driverId==request.auth.uid);}
+
+}
+}

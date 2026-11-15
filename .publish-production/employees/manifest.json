@@ -1,0 +1,19 @@
+{
+  "sourceRepository": "zelmore219-lang/backwoods-brew-android",
+  "sourceSha": "4a35193a5e4e7764b274d881d273d612c9531d0a",
+  "version": "0.4.10",
+  "acceptanceRun": 43724739886,
+  "tag": "employees-0.4.10",
+  "feedTag": "employee-updates",
+  "feedName": "backwoods-employees-updates.json",
+  "installer": "Backwoods-Employees-Setup-0.4.10.exe",
+  "notes": "Windows 0.4.10 adds Production access and packaged-stock/accounting messages to the existing owner service, while retaining Pest 0.4.9 staff links, canonical time, department pay and private billing. Use Vendor 4.1.11, Accounting 1.0.12 and Production 1.0.1. Existing Employee Android entry is retained.",
+  "files": [
+    {
+      "name": "Backwoods-Employees-Setup-0.4.10.exe",
+      "size": 172661471,
+      "sha256": "6d33705bab65b6f1e22efb0fda75516439ef5041fdbeb5fe88e69d4bb81d93b0",
+      "parts": []
+    }
+  ]
+}

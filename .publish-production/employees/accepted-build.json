@@ -1,0 +1,192 @@
+{
+  "run": {
+    "id": 43724739886,
+    "head_sha": "4a35193a5e4e7764b274d881d273d612c9531d0a",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "name": "windows",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-15T14:30:45Z",
+            "completed_at": "2026-11-15T14:30:47Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-15T14:30:47Z",
+            "completed_at": "2026-11-15T14:31:00Z"
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-15T14:31:00Z",
+            "completed_at": "2026-11-15T14:31:00Z"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-15T14:31:00Z",
+            "completed_at": "2026-11-15T14:31:04Z"
+          },
+          {
+            "name": "Install test dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-15T14:31:04Z",
+            "completed_at": "2026-11-15T14:32:19Z"
+          },
+          {
+            "name": "Install packaged-app test tools",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6,
+            "started_at": "2026-11-15T14:32:19Z",
+            "completed_at": "2026-11-15T14:32:19Z"
+          },
+          {
+            "name": "Verify existing Employee workflows and updater controls",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-15T14:32:19Z",
+            "completed_at": "2026-11-15T14:33:23Z"
+          },
+          {
+            "name": "Build Employee Windows installer from retained runtime",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-15T14:33:23Z",
+            "completed_at": "2026-11-15T14:39:41Z"
+          },
+          {
+            "name": "Retrieve the existing Employee installer",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 9,
+            "started_at": "2026-11-15T14:39:41Z",
+            "completed_at": "2026-11-15T14:39:41Z"
+          },
+          {
+            "name": "Verify the existing installer checksum",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 10,
+            "started_at": "2026-11-15T14:39:41Z",
+            "completed_at": "2026-11-15T14:39:41Z"
+          },
+          {
+            "name": "Install published 0.3.1 and create upgrade preservation fixture",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-15T14:39:41Z",
+            "completed_at": "2026-11-15T14:40:32Z"
+          },
+          {
+            "name": "Install Employee Windows package",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-11-15T14:40:32Z",
+            "completed_at": "2026-11-15T14:41:00Z"
+          },
+          {
+            "name": "Run actual Windows package with bundled Python and document encryption",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-11-15T14:41:00Z",
+            "completed_at": "2026-11-15T14:41:19Z"
+          },
+          {
+            "name": "Reinstall and preserve Employee records and encrypted document key",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-15T14:41:19Z",
+            "completed_at": "2026-11-15T14:41:55Z"
+          },
+          {
+            "name": "Stage verified Windows package privately",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-15T14:41:55Z",
+            "completed_at": "2026-11-15T14:42:29Z"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28,
+            "started_at": "2026-11-15T14:42:29Z",
+            "completed_at": "2026-11-15T14:42:30Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29,
+            "started_at": "2026-11-15T14:42:30Z",
+            "completed_at": "2026-11-15T14:42:31Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30,
+            "started_at": "2026-11-15T14:42:31Z",
+            "completed_at": "2026-11-15T14:42:34Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31,
+            "started_at": "2026-11-15T14:42:34Z",
+            "completed_at": "2026-11-15T14:42:35Z"
+          }
+        ]
+      }
+    ]
+  },
+  "release": {
+    "tag_name": "employee-ci-4a35193a5e4e7764b274d881d273d612c9531d0a",
+    "draft": true,
+    "assets": [
+      {
+        "name": "Backwoods-Employees-Setup-0.4.10.exe",
+        "size": 172661471,
+        "digest": "sha256:6d33705bab65b6f1e22efb0fda75516439ef5041fdbeb5fe88e69d4bb81d93b0"
+      },
+      {
+        "name": "installed-file-manifest.json",
+        "size": 438266,
+        "digest": "sha256:71d1a4f2d70535d5fea7f3eb09ccf1a9a7cad8e469d612e7865c24a90b681534"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "size": 104,
+        "digest": "sha256:62a4e6123368aad951c54e1cc5aa1884f16aa7855d31c2af5d4af8ca3962c111"
+      }
+    ]
+  }
+}
