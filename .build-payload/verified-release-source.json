@@ -1,0 +1,15 @@
+{
+  "application": "Backwoods Employees",
+  "version": "0.4.7",
+  "sourceRepository": "zelmore219-lang/backwoods-brew-android",
+  "sourceSha": "a9f1fe3184ec00dffb55cc46148ad32cd4b886af",
+  "windowsAcceptanceRun": 43672644928,
+  "windowsUnitAcceptanceRun": 43672644928,
+  "windowsUnitSourceSha": "a9f1fe3184ec00dffb55cc46148ad32cd4b886af",
+  "windows": {
+    "filename": "Backwoods-Employees-Setup-0.4.7.exe",
+    "sha256": "83a681e4d5294033b8282d5c3b07ecc42fdcdca0b801f47e4b97872a8e8e1e25",
+    "size": 172657137
+  },
+  "correction": "Corrects the auxiliary windowsUnitSourceSha in release-source.json, which retained the prior 0.4.6 value. The installer, primary sourceSha, accepted-build evidence and update feed are unchanged."
+}

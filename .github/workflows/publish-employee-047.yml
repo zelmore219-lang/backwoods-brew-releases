@@ -28,3 +28,7 @@ jobs:
           --notes .build-payload/RELEASE-NOTES.md
           --owner-guide .build-payload/OWNER-ONBOARDING-CHECKLIST.md
           --publish
+      - name: Attach the exact unit-source metadata correction
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload employees-0.4.7 .build-payload/verified-release-source.json --repo zelmore219-lang/backwoods-brew-releases
