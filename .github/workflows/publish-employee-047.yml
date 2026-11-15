@@ -1,0 +1,30 @@
+name: Publish verified Employee workforce 0.4.7
+on:
+  push:
+    branches: [codex/publish-employee-0.4.7]
+    paths: [.build-payload/READY]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Reconstruct the accepted installer and verify all hashes
+        run: python .build-payload/reconstruct.py
+      - name: Publish accepted Windows bytes before updating the Employee feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python .build-payload/publish.py
+          --installer /tmp/Backwoods-Employees-Setup-0.4.7.exe
+          --version 0.4.7
+          --source-sha a9f1fe3184ec00dffb55cc46148ad32cd4b886af
+          --acceptance-run 43672644928
+          --notes .build-payload/RELEASE-NOTES.md
+          --owner-guide .build-payload/OWNER-ONBOARDING-CHECKLIST.md
+          --publish

@@ -24,8 +24,8 @@ def api(path):
  # staging the checksum-pinned installer. This public repository token has
  # no access to the private source repository.
  evidence=json.loads(Path(__file__).with_name('accepted-build.json').read_text())
- if path=='repos/'+SOURCE_REPO+'/actions/runs/43635778527':return evidence['run']
- if path=='repos/'+SOURCE_REPO+'/actions/runs/43635778527/jobs':return evidence['jobs']
+ if path=='repos/'+SOURCE_REPO+'/actions/runs/43672644928':return evidence['run']
+ if path=='repos/'+SOURCE_REPO+'/actions/runs/43672644928/jobs':return evidence['jobs']
  if path=='repos/'+SOURCE_REPO+'/releases?per_page=100':return evidence['releases']
  return json.loads(gh('api',path))
 def mutate(method,path,payload):
@@ -115,7 +115,7 @@ def main():
   release=mutate('POST','repos/'+RELEASE_REPO+'/releases',{'tag_name':tag,'draft':True,'name':'Backwoods Employees '+args.version,'body':args.notes.read_text(encoding='utf-8')})
  with tempfile.TemporaryDirectory(prefix='employee-release-') as folder:
   folder=Path(folder);checksums=folder/'SHA256SUMS.txt';checksums.write_text(sha+'  '+args.installer.name+'\n',encoding='utf-8')
-  provenance=folder/'release-source.json';provenance.write_text(json.dumps({'application':'Backwoods Employees','version':args.version,'sourceRepository':SOURCE_REPO,'sourceSha':args.source_sha,'windowsAcceptanceRun':args.acceptance_run,'windowsUnitAcceptanceRun':43635778527,'windowsUnitSourceSha':'f00c69b810f864e9d799fe955de76164d9518c2b','windows':{'filename':args.installer.name,'sha256':sha,'size':size},'android':'Existing signed Android feed retained; this publication contains Windows only.'},indent=2)+'\n',encoding='utf-8')
+  provenance=folder/'release-source.json';provenance.write_text(json.dumps({'application':'Backwoods Employees','version':args.version,'sourceRepository':SOURCE_REPO,'sourceSha':args.source_sha,'windowsAcceptanceRun':args.acceptance_run,'windowsUnitAcceptanceRun':43672644928,'windowsUnitSourceSha':'f00c69b810f864e9d799fe955de76164d9518c2b','windows':{'filename':args.installer.name,'sha256':sha,'size':size},'android':'Existing signed Android feed retained; this publication contains Windows only.'},indent=2)+'\n',encoding='utf-8')
   guide=folder/'OWNER-ONBOARDING-CHECKLIST.md';guide.write_text(args.owner_guide.read_text(encoding='utf-8'),encoding='utf-8')
   if release['draft']:
    upload(release['id'],[args.installer,checksums,provenance,guide])

@@ -1,59 +1,54 @@
 {
   "run": {
-    "id": 43635778527,
-    "head_sha": "f00c69b810f864e9d799fe955de76164d9518c2b",
+    "id": 43672644928,
+    "head_sha": "a9f1fe3184ec00dffb55cc46148ad32cd4b886af",
     "status": "completed",
     "conclusion": "success"
   },
   "jobs": {
     "jobs": [
       {
-        "name": "android",
+        "name": "windows",
         "status": "completed",
         "conclusion": "success"
       },
       {
-        "name": "windows",
+        "name": "android",
         "status": "completed",
-        "conclusion": "success"
+        "conclusion": "skipped"
       }
     ]
   },
   "releases": [
     {
-      "tag_name": "employee-ci-f00c69b810f864e9d799fe955de76164d9518c2b",
+      "tag_name": "employee-ci-a9f1fe3184ec00dffb55cc46148ad32cd4b886af",
       "draft": true,
       "assets": [
         {
-          "name": "app-release-unsigned.apk",
-          "size": 50004986,
-          "digest": "sha256:25b1334d47ae7836ae57d8c6df310e5d3a91dd4c1a4bc58931a0343b25110088"
-        },
-        {
-          "name": "Backwoods-Employees-Setup-0.4.6.exe",
-          "size": 172638312,
-          "digest": "sha256:aa10ef7455e59c84264add88f1ec42c7d7780c483b98ade15c7f30ac7d88ee5a"
+          "name": "Backwoods-Employees-Setup-0.4.7.exe",
+          "size": 172657137,
+          "digest": "sha256:83a681e4d5294033b8282d5c3b07ecc42fdcdca0b801f47e4b97872a8e8e1e25"
         },
         {
           "name": "installed-file-manifest.json",
-          "size": 437669,
-          "digest": "sha256:e2481587bc4a22d1852291de682b42af7a23b9a59034bd4b3710304d0de740c4"
+          "size": 437784,
+          "digest": "sha256:706f9390937d2e1189d7f7235cb75cfb3f5ecb2330843476c285ae72bd4ba9de"
         },
         {
           "name": "SHA256SUMS.txt",
           "size": 103,
-          "digest": "sha256:a95bcb1c4765d7b7cac0a8ff0b36914a11a9104b8ee7efbd0a15898554092dcc"
+          "digest": "sha256:2d7332ad25bc161205c6935b9f388ea79e84600538690090d411f5c9b31a824b"
         }
       ]
     }
   ],
   "windowsUnit": {
-    "id": 43635778527,
-    "sourceSha": "f00c69b810f864e9d799fe955de76164d9518c2b",
+    "id": 43672644928,
+    "sourceSha": "a9f1fe3184ec00dffb55cc46148ad32cd4b886af",
     "status": "completed",
     "conclusion": "success",
-    "pythonTests": 135,
+    "pythonTests": 137,
     "pythonSkipped": 24,
-    "nodePassed": 16
+    "nodePassed": 17
   }
 }
