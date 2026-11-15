@@ -1,0 +1,169 @@
+{
+  "run": {
+    "id": 43718914009,
+    "head_sha": "d32837e961bc1f99c844bbf831d678fbb3a78dc8",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/zelmore219-lang/backwoods-brew-window-original1/actions/runs/43718914009"
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "name": "windows",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/zelmore219-lang/backwoods-brew-window-original1/actions/runs/43718914009/job/132826401956",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-15T13:25:22Z",
+            "completed_at": "2026-11-15T13:25:25Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-15T13:25:25Z",
+            "completed_at": "2026-11-15T13:25:36Z"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-15T13:25:36Z",
+            "completed_at": "2026-11-15T13:25:40Z"
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-15T13:25:40Z",
+            "completed_at": "2026-11-15T13:25:41Z"
+          },
+          {
+            "name": "Verify business workflows and build the exact Firebase assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-15T13:25:41Z",
+            "completed_at": "2026-11-15T13:26:30Z"
+          },
+          {
+            "name": "Build Windows setup and portable EXE",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-15T13:26:30Z",
+            "completed_at": "2026-11-15T13:30:39Z"
+          },
+          {
+            "name": "Retain exact candidate EXEs privately before native acceptance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-15T13:30:39Z",
+            "completed_at": "2026-11-15T13:31:06Z"
+          },
+          {
+            "name": "Install and reinstall exact accepted application bytes",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-15T13:31:06Z",
+            "completed_at": "2026-11-15T13:31:43Z"
+          },
+          {
+            "name": "Stage exact accepted EXEs privately",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-15T13:31:43Z",
+            "completed_at": "2026-11-15T13:31:46Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-11-15T13:31:46Z",
+            "completed_at": "2026-11-15T13:31:46Z"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-11-15T13:31:46Z",
+            "completed_at": "2026-11-15T13:31:46Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-15T13:31:46Z",
+            "completed_at": "2026-11-15T13:31:48Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-15T13:31:48Z",
+            "completed_at": "2026-11-15T13:31:48Z"
+          }
+        ]
+      }
+    ]
+  },
+  "release": {
+    "tag_name": "pest-ci-d32837e961bc1f99c844bbf831d678fbb3a78dc8",
+    "draft": true,
+    "id": 446079126,
+    "assets": [
+      {
+        "name": "accepted-windows.json",
+        "id": 751102988,
+        "size": 570,
+        "digest": "sha256:96150d1e1566197b8a6441b00da222c419c705f711ca342436a715ec15c6b2bd"
+      },
+      {
+        "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe",
+        "id": 751100378,
+        "size": 103398893,
+        "digest": "sha256:1c7870f190e82445931d85aa73f61e905e90f9f7175d3f16b7bf62fcc007b2e2"
+      },
+      {
+        "name": "Backwoods-Pest-Control-Setup-0.10.0.exe",
+        "id": 751100783,
+        "size": 113612367,
+        "digest": "sha256:8a2747f80cf374fb12357058a00e2106a2028850fb8a2c78ec614d270479e608"
+      }
+    ]
+  },
+  "nativeProof": {
+    "sourceSha": "d32837e961bc1f99c844bbf831d678fbb3a78dc8",
+    "run": 43718914009,
+    "version": "0.10.0",
+    "windowsInstallReinstallPassed": true,
+    "physicalDevice": false,
+    "files": [
+      {
+        "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe",
+        "size": 103398893,
+        "sha256": "1c7870f190e82445931d85aa73f61e905e90f9f7175d3f16b7bf62fcc007b2e2"
+      },
+      {
+        "name": "Backwoods-Pest-Control-Setup-0.10.0.exe",
+        "size": 113612367,
+        "sha256": "8a2747f80cf374fb12357058a00e2106a2028850fb8a2c78ec614d270479e608"
+      }
+    ]
+  }
+}

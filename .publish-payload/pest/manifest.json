@@ -1,0 +1,97 @@
+{
+  "version": "0.10.0",
+  "sourceRepository": "zelmore219-lang/backwoods-brew-window-original1",
+  "sourceSha": "d32837e961bc1f99c844bbf831d678fbb3a78dc8",
+  "acceptanceRun": 43718914009,
+  "tag": "pest-0.10.0",
+  "feedTag": "pest-updates",
+  "feedName": "backwoods-pest-updates.json",
+  "installer": "Backwoods-Pest-Control-Setup-0.10.0.exe",
+  "notes": "Windows 0.10.0: explicitly link verified Pest and Employee accounts, record Pest department time with offline retry and office review, and authorize issued Pest invoices/payments for the same company books. See OWNER-GUIDE.md. Existing Android 0.9.0 retained.",
+  "files": [
+    {
+      "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe",
+      "size": 103398893,
+      "sha256": "1c7870f190e82445931d85aa73f61e905e90f9f7175d3f16b7bf62fcc007b2e2",
+      "parts": [
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part000",
+          "size": 16777216,
+          "sha256": "af20d59725a08998096d1b7b820379299c7be6632518a2208812f4cd8ef3fea9"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part001",
+          "size": 16777216,
+          "sha256": "5912332ac8f7b828f55de7fdf6f1eb16217a4c6a0e107926558f8eb70262f0ea"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part002",
+          "size": 16777216,
+          "sha256": "582bfb1c2d6cd436182624e7bc2de16ac8c72b733709bc828601bc8894ac355d"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part003",
+          "size": 16777216,
+          "sha256": "5d1b330ab0584266fd0739128784e79fbebfdefeb845e52c2b784045185faa92"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part004",
+          "size": 16777216,
+          "sha256": "7f8efe156cdb8cd579b4cc2603d14fb89e475cae9efc62dc1bef8346a3f3300e"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part005",
+          "size": 16777216,
+          "sha256": "ce8001d0e97ce5ebe39ff4fe95e5c70d54fdb0788950db328e2b395153636af7"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.0.exe.part006",
+          "size": 2735597,
+          "sha256": "90109124a58c3d506ea46b43dc07d4bb62994e80d1115c358db24416e1f805db"
+        }
+      ]
+    },
+    {
+      "name": "Backwoods-Pest-Control-Setup-0.10.0.exe",
+      "size": 113612367,
+      "sha256": "8a2747f80cf374fb12357058a00e2106a2028850fb8a2c78ec614d270479e608",
+      "parts": [
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part000",
+          "size": 16777216,
+          "sha256": "57f52a278832d6562dde34171b35de775ce791e23518fdd310846580e1d77b7d"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part001",
+          "size": 16777216,
+          "sha256": "a300db66a10a403734b96ce36e9bc407473fc36c7d272758e6220ed95d5d278b"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part002",
+          "size": 16777216,
+          "sha256": "0f843374a32e173f44c09ebf67ed7dda56efbbd4c7b32e59dd63bc8c69eb5ef3"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part003",
+          "size": 16777216,
+          "sha256": "70c19f8c650ad83e7dad00ebf38d79380057b3098548f68f99cad859be274f02"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part004",
+          "size": 16777216,
+          "sha256": "ec932549882567e1be5feb0cf5141e57e1b91d38eae35fe00ee24a55a870d37c"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part005",
+          "size": 16777216,
+          "sha256": "c26c743de459c112661d265a11970f41e14f967536acb5e5e01f008f55568522"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.0.exe.part006",
+          "size": 12949071,
+          "sha256": "b4119a47f511c2d498cc4a5fca1516158c4d367af2c99f5e83f08439aaf3df63"
+        }
+      ]
+    }
+  ]
+}

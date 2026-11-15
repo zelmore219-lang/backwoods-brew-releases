@@ -1,0 +1,24 @@
+name: Publish accepted Pest and Employee Windows connection updates
+on:
+  push:
+    branches: [codex/publish-pest-employee-2026-11-15]
+    paths: [.publish-payload/READY]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [pest, employees]
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Publish exact accepted packages before activating the update feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .publish-payload/publish.py ${{ matrix.app }}
