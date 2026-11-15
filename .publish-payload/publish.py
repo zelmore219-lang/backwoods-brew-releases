@@ -33,7 +33,8 @@ def digest(file):
 
 
 def read_public(url):
-    with urllib.request.urlopen(url, timeout=90) as response:
+    request = urllib.request.Request(url, headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache'})
+    with urllib.request.urlopen(request, timeout=90) as response:
         return response.read()
 
 
@@ -201,13 +202,13 @@ def publish(app, check_only=False):
                 api('releases/' + str(current['id']), 'PATCH', {'tag_name': manifest['feedTag'], 'target_commitish': current['target_commitish'], 'draft': False, 'make_latest': 'false'})
             else:
                 subprocess.run(['gh', 'release', 'upload', manifest['feedTag'], str(feed), '--repo', REPO, '--clobber'], check=True)
-        for attempt in range(7):
+        for attempt in range(12):
             try:
                 if json.loads(read_public(feed_url)) == replacement:
                     break
             except Exception:
                 pass
-            if attempt == 6:
+            if attempt == 11:
                 raise RuntimeError('Published feed could not be confirmed')
             time.sleep(min(2 ** attempt, 30))
         print(json.dumps({'app': app, 'version': manifest['version'], 'feed': feed_url, 'source': manifest['sourceSha'], 'run': run['id'], 'publicBytesVerified': True, 'retainedAndroid': app == 'employees'}), flush=True)

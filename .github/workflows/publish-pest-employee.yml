@@ -1,4 +1,4 @@
-name: Publish accepted Pest and Employee Windows connection updates
+name: Publish accepted Employee 0.4.9 Pest compatibility patch
 on:
   push:
     branches: [codex/publish-pest-employee-2026-11-15]
@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [pest, employees]
+        app: [employees]
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
