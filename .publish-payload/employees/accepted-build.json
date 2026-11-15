@@ -1,10 +1,10 @@
 {
   "run": {
-    "id": 43718914075,
-    "head_sha": "31f70c915e2a33e63e8c47bac51e8acaaf2b29c5",
+    "id": 43720872093,
+    "head_sha": "58840434904a0a357077b81403a5e5967fb159cb",
     "status": "completed",
     "conclusion": "success",
-    "html_url": "https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43718914075"
+    "html_url": "https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43720872093"
   },
   "jobs": {
     "jobs": [
@@ -12,159 +12,159 @@
         "name": "windows",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43718914075/job/132826400728",
+        "html_url": "https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43720872093/job/132832363644",
         "steps": [
           {
             "name": "Set up job",
             "status": "completed",
             "conclusion": "success",
             "number": 1,
-            "started_at": "2026-11-15T13:25:23Z",
-            "completed_at": "2026-11-15T13:25:25Z"
+            "started_at": "2026-11-15T13:48:00Z",
+            "completed_at": "2026-11-15T13:48:01Z"
           },
           {
             "name": "Run actions/checkout@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 2,
-            "started_at": "2026-11-15T13:25:25Z",
-            "completed_at": "2026-11-15T13:25:38Z"
+            "started_at": "2026-11-15T13:48:01Z",
+            "completed_at": "2026-11-15T13:48:13Z"
           },
           {
             "name": "Run actions/setup-python@v5",
             "status": "completed",
             "conclusion": "success",
             "number": 3,
-            "started_at": "2026-11-15T13:25:38Z",
-            "completed_at": "2026-11-15T13:25:38Z"
+            "started_at": "2026-11-15T13:48:13Z",
+            "completed_at": "2026-11-15T13:48:13Z"
           },
           {
             "name": "Run actions/setup-node@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 4,
-            "started_at": "2026-11-15T13:25:38Z",
-            "completed_at": "2026-11-15T13:25:43Z"
+            "started_at": "2026-11-15T13:48:13Z",
+            "completed_at": "2026-11-15T13:48:18Z"
           },
           {
             "name": "Install test dependencies",
             "status": "completed",
             "conclusion": "success",
             "number": 5,
-            "started_at": "2026-11-15T13:25:43Z",
-            "completed_at": "2026-11-15T13:27:09Z"
+            "started_at": "2026-11-15T13:48:18Z",
+            "completed_at": "2026-11-15T13:49:32Z"
           },
           {
             "name": "Install packaged-app test tools",
             "status": "completed",
             "conclusion": "skipped",
             "number": 6,
-            "started_at": "2026-11-15T13:27:09Z",
-            "completed_at": "2026-11-15T13:27:09Z"
+            "started_at": "2026-11-15T13:49:32Z",
+            "completed_at": "2026-11-15T13:49:32Z"
           },
           {
             "name": "Verify existing Employee workflows and updater controls",
             "status": "completed",
             "conclusion": "success",
             "number": 7,
-            "started_at": "2026-11-15T13:27:09Z",
-            "completed_at": "2026-11-15T13:28:06Z"
+            "started_at": "2026-11-15T13:49:32Z",
+            "completed_at": "2026-11-15T13:50:27Z"
           },
           {
             "name": "Build Employee Windows installer from retained runtime",
             "status": "completed",
             "conclusion": "success",
             "number": 8,
-            "started_at": "2026-11-15T13:28:06Z",
-            "completed_at": "2026-11-15T13:34:34Z"
+            "started_at": "2026-11-15T13:50:27Z",
+            "completed_at": "2026-11-15T13:56:14Z"
           },
           {
             "name": "Retrieve the existing Employee installer",
             "status": "completed",
             "conclusion": "skipped",
             "number": 9,
-            "started_at": "2026-11-15T13:34:34Z",
-            "completed_at": "2026-11-15T13:34:34Z"
+            "started_at": "2026-11-15T13:56:14Z",
+            "completed_at": "2026-11-15T13:56:14Z"
           },
           {
             "name": "Verify the existing installer checksum",
             "status": "completed",
             "conclusion": "skipped",
             "number": 10,
-            "started_at": "2026-11-15T13:34:34Z",
-            "completed_at": "2026-11-15T13:34:34Z"
+            "started_at": "2026-11-15T13:56:14Z",
+            "completed_at": "2026-11-15T13:56:14Z"
           },
           {
             "name": "Install published 0.3.1 and create upgrade preservation fixture",
             "status": "completed",
             "conclusion": "success",
             "number": 11,
-            "started_at": "2026-11-15T13:34:34Z",
-            "completed_at": "2026-11-15T13:35:07Z"
+            "started_at": "2026-11-15T13:56:14Z",
+            "completed_at": "2026-11-15T13:56:46Z"
           },
           {
             "name": "Install Employee Windows package",
             "status": "completed",
             "conclusion": "success",
             "number": 12,
-            "started_at": "2026-11-15T13:35:07Z",
-            "completed_at": "2026-11-15T13:35:33Z"
+            "started_at": "2026-11-15T13:56:46Z",
+            "completed_at": "2026-11-15T13:57:14Z"
           },
           {
             "name": "Run actual Windows package with bundled Python and document encryption",
             "status": "completed",
             "conclusion": "success",
             "number": 13,
-            "started_at": "2026-11-15T13:35:33Z",
-            "completed_at": "2026-11-15T13:35:45Z"
+            "started_at": "2026-11-15T13:57:14Z",
+            "completed_at": "2026-11-15T13:57:26Z"
           },
           {
             "name": "Reinstall and preserve Employee records and encrypted document key",
             "status": "completed",
             "conclusion": "success",
             "number": 14,
-            "started_at": "2026-11-15T13:35:45Z",
-            "completed_at": "2026-11-15T13:36:21Z"
+            "started_at": "2026-11-15T13:57:26Z",
+            "completed_at": "2026-11-15T13:58:00Z"
           },
           {
             "name": "Stage verified Windows package privately",
             "status": "completed",
             "conclusion": "success",
             "number": 15,
-            "started_at": "2026-11-15T13:36:21Z",
-            "completed_at": "2026-11-15T13:37:41Z"
+            "started_at": "2026-11-15T13:58:00Z",
+            "completed_at": "2026-11-15T13:58:14Z"
           },
           {
             "name": "Post Run actions/setup-node@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 28,
-            "started_at": "2026-11-15T13:37:41Z",
-            "completed_at": "2026-11-15T13:37:41Z"
+            "started_at": "2026-11-15T13:58:14Z",
+            "completed_at": "2026-11-15T13:58:15Z"
           },
           {
             "name": "Post Run actions/setup-python@v5",
             "status": "completed",
             "conclusion": "success",
             "number": 29,
-            "started_at": "2026-11-15T13:37:41Z",
-            "completed_at": "2026-11-15T13:37:41Z"
+            "started_at": "2026-11-15T13:58:15Z",
+            "completed_at": "2026-11-15T13:58:15Z"
           },
           {
             "name": "Post Run actions/checkout@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 30,
-            "started_at": "2026-11-15T13:37:41Z",
-            "completed_at": "2026-11-15T13:37:44Z"
+            "started_at": "2026-11-15T13:58:15Z",
+            "completed_at": "2026-11-15T13:58:17Z"
           },
           {
             "name": "Complete job",
             "status": "completed",
             "conclusion": "success",
             "number": 31,
-            "started_at": "2026-11-15T13:37:44Z",
-            "completed_at": "2026-11-15T13:37:44Z"
+            "started_at": "2026-11-15T13:58:18Z",
+            "completed_at": "2026-11-15T13:58:18Z"
           }
         ]
       },
@@ -172,33 +172,33 @@
         "name": "android",
         "status": "completed",
         "conclusion": "skipped",
-        "html_url": "https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43718914075/job/132826402013",
+        "html_url": "https://github.com/zelmore219-lang/backwoods-brew-android/actions/runs/43720872093/job/132832364854",
         "steps": []
       }
     ]
   },
   "release": {
-    "tag_name": "employee-ci-31f70c915e2a33e63e8c47bac51e8acaaf2b29c5",
+    "tag_name": "employee-ci-58840434904a0a357077b81403a5e5967fb159cb",
     "draft": true,
-    "id": 446079125,
+    "id": 446093224,
     "assets": [
       {
-        "name": "Backwoods-Employees-Setup-0.4.8.exe",
-        "id": 751114969,
-        "size": 172653277,
-        "digest": "sha256:335bc8cd6479ac0274dcf1044540b7277026a56610039be7a6a3bb2b7e57313d"
+        "name": "Backwoods-Employees-Setup-0.4.9.exe",
+        "id": 751173454,
+        "size": 172721704,
+        "digest": "sha256:78c3d589e93ce60b235c54c0bf424a41d618e2f0a5b74fb7176f8651cf45be43"
       },
       {
         "name": "installed-file-manifest.json",
-        "id": 751118235,
+        "id": 751173780,
         "size": 438026,
-        "digest": "sha256:7c11dc67aa53680f2a3128eb58e5177219650655d5c14a2a867f3d72690edec8"
+        "digest": "sha256:c738ddddd7dff2686e127da62abec0e4778a3af2bbb1d25c1f22acaf3cc15e35"
       },
       {
         "name": "SHA256SUMS.txt",
-        "id": 751118171,
+        "id": 751173747,
         "size": 103,
-        "digest": "sha256:dcfefb719719ce1aafaa2d2460006b11e1a03cb44094c8ccdc80cf102998e77c"
+        "digest": "sha256:aef104eb3727790b74052947a7bbc76bf5d0986e4ad9bbc08d4568edfa505e96"
       }
     ]
   }
