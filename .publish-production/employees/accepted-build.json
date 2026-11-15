@@ -1,7 +1,7 @@
 {
   "run": {
-    "id": 43724739886,
-    "head_sha": "4a35193a5e4e7764b274d881d273d612c9531d0a",
+    "id": 43755122747,
+    "head_sha": "b868c2c2473f0431e67f25cd49f33fb7e848e68a",
     "status": "completed",
     "conclusion": "success"
   },
@@ -17,175 +17,176 @@
             "status": "completed",
             "conclusion": "success",
             "number": 1,
-            "started_at": "2026-11-15T14:30:45Z",
-            "completed_at": "2026-11-15T14:30:47Z"
+            "started_at": "2026-11-15T19:55:37Z",
+            "completed_at": "2026-11-15T19:55:39Z"
           },
           {
             "name": "Run actions/checkout@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 2,
-            "started_at": "2026-11-15T14:30:47Z",
-            "completed_at": "2026-11-15T14:31:00Z"
+            "started_at": "2026-11-15T19:55:39Z",
+            "completed_at": "2026-11-15T19:55:52Z"
           },
           {
             "name": "Run actions/setup-python@v5",
             "status": "completed",
             "conclusion": "success",
             "number": 3,
-            "started_at": "2026-11-15T14:31:00Z",
-            "completed_at": "2026-11-15T14:31:00Z"
+            "started_at": "2026-11-15T19:55:52Z",
+            "completed_at": "2026-11-15T19:55:53Z"
           },
           {
             "name": "Run actions/setup-node@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 4,
-            "started_at": "2026-11-15T14:31:00Z",
-            "completed_at": "2026-11-15T14:31:04Z"
+            "started_at": "2026-11-15T19:55:53Z",
+            "completed_at": "2026-11-15T19:55:57Z"
           },
           {
             "name": "Install test dependencies",
             "status": "completed",
             "conclusion": "success",
             "number": 5,
-            "started_at": "2026-11-15T14:31:04Z",
-            "completed_at": "2026-11-15T14:32:19Z"
+            "started_at": "2026-11-15T19:55:57Z",
+            "completed_at": "2026-11-15T19:57:07Z"
           },
           {
             "name": "Install packaged-app test tools",
             "status": "completed",
             "conclusion": "skipped",
             "number": 6,
-            "started_at": "2026-11-15T14:32:19Z",
-            "completed_at": "2026-11-15T14:32:19Z"
+            "started_at": "2026-11-15T19:57:07Z",
+            "completed_at": "2026-11-15T19:57:07Z"
           },
           {
             "name": "Verify existing Employee workflows and updater controls",
             "status": "completed",
             "conclusion": "success",
             "number": 7,
-            "started_at": "2026-11-15T14:32:19Z",
-            "completed_at": "2026-11-15T14:33:23Z"
+            "started_at": "2026-11-15T19:57:07Z",
+            "completed_at": "2026-11-15T19:58:01Z"
           },
           {
             "name": "Build Employee Windows installer from retained runtime",
             "status": "completed",
             "conclusion": "success",
             "number": 8,
-            "started_at": "2026-11-15T14:33:23Z",
-            "completed_at": "2026-11-15T14:39:41Z"
+            "started_at": "2026-11-15T19:58:01Z",
+            "completed_at": "2026-11-15T20:04:21Z"
           },
           {
             "name": "Retrieve the existing Employee installer",
             "status": "completed",
             "conclusion": "skipped",
             "number": 9,
-            "started_at": "2026-11-15T14:39:41Z",
-            "completed_at": "2026-11-15T14:39:41Z"
+            "started_at": "2026-11-15T20:04:21Z",
+            "completed_at": "2026-11-15T20:04:21Z"
           },
           {
             "name": "Verify the existing installer checksum",
             "status": "completed",
             "conclusion": "skipped",
             "number": 10,
-            "started_at": "2026-11-15T14:39:41Z",
-            "completed_at": "2026-11-15T14:39:41Z"
+            "started_at": "2026-11-15T20:04:21Z",
+            "completed_at": "2026-11-15T20:04:21Z"
           },
           {
             "name": "Install published 0.3.1 and create upgrade preservation fixture",
             "status": "completed",
             "conclusion": "success",
             "number": 11,
-            "started_at": "2026-11-15T14:39:41Z",
-            "completed_at": "2026-11-15T14:40:32Z"
+            "started_at": "2026-11-15T20:04:21Z",
+            "completed_at": "2026-11-15T20:05:09Z"
           },
           {
             "name": "Install Employee Windows package",
             "status": "completed",
             "conclusion": "success",
             "number": 12,
-            "started_at": "2026-11-15T14:40:32Z",
-            "completed_at": "2026-11-15T14:41:00Z"
+            "started_at": "2026-11-15T20:05:09Z",
+            "completed_at": "2026-11-15T20:05:37Z"
           },
           {
             "name": "Run actual Windows package with bundled Python and document encryption",
             "status": "completed",
             "conclusion": "success",
             "number": 13,
-            "started_at": "2026-11-15T14:41:00Z",
-            "completed_at": "2026-11-15T14:41:19Z"
+            "started_at": "2026-11-15T20:05:37Z",
+            "completed_at": "2026-11-15T20:05:50Z"
           },
           {
             "name": "Reinstall and preserve Employee records and encrypted document key",
             "status": "completed",
             "conclusion": "success",
             "number": 14,
-            "started_at": "2026-11-15T14:41:19Z",
-            "completed_at": "2026-11-15T14:41:55Z"
+            "started_at": "2026-11-15T20:05:50Z",
+            "completed_at": "2026-11-15T20:06:25Z"
           },
           {
             "name": "Stage verified Windows package privately",
             "status": "completed",
             "conclusion": "success",
             "number": 15,
-            "started_at": "2026-11-15T14:41:55Z",
-            "completed_at": "2026-11-15T14:42:29Z"
+            "started_at": "2026-11-15T20:06:25Z",
+            "completed_at": "2026-11-15T20:06:58Z"
           },
           {
             "name": "Post Run actions/setup-node@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 28,
-            "started_at": "2026-11-15T14:42:29Z",
-            "completed_at": "2026-11-15T14:42:30Z"
+            "started_at": "2026-11-15T20:06:58Z",
+            "completed_at": "2026-11-15T20:06:59Z"
           },
           {
             "name": "Post Run actions/setup-python@v5",
             "status": "completed",
             "conclusion": "success",
             "number": 29,
-            "started_at": "2026-11-15T14:42:30Z",
-            "completed_at": "2026-11-15T14:42:31Z"
+            "started_at": "2026-11-15T20:06:59Z",
+            "completed_at": "2026-11-15T20:06:59Z"
           },
           {
             "name": "Post Run actions/checkout@v4",
             "status": "completed",
             "conclusion": "success",
             "number": 30,
-            "started_at": "2026-11-15T14:42:31Z",
-            "completed_at": "2026-11-15T14:42:34Z"
+            "started_at": "2026-11-15T20:06:59Z",
+            "completed_at": "2026-11-15T20:07:02Z"
           },
           {
             "name": "Complete job",
             "status": "completed",
             "conclusion": "success",
             "number": 31,
-            "started_at": "2026-11-15T14:42:34Z",
-            "completed_at": "2026-11-15T14:42:35Z"
+            "started_at": "2026-11-15T20:07:02Z",
+            "completed_at": "2026-11-15T20:07:02Z"
           }
         ]
       }
     ]
   },
   "release": {
-    "tag_name": "employee-ci-4a35193a5e4e7764b274d881d273d612c9531d0a",
+    "id": 446330639,
+    "tag_name": "employee-ci-b868c2c2473f0431e67f25cd49f33fb7e848e68a",
     "draft": true,
     "assets": [
       {
-        "name": "Backwoods-Employees-Setup-0.4.10.exe",
-        "size": 172661471,
-        "digest": "sha256:6d33705bab65b6f1e22efb0fda75516439ef5041fdbeb5fe88e69d4bb81d93b0"
+        "name": "Backwoods-Employees-Setup-0.4.11.exe",
+        "size": 172716934,
+        "digest": "sha256:8df2284876172def254afc0a18a8013698e86b878927cabfd8c21d298d46ab70"
       },
       {
         "name": "installed-file-manifest.json",
-        "size": 438266,
-        "digest": "sha256:71d1a4f2d70535d5fea7f3eb09ccf1a9a7cad8e469d612e7865c24a90b681534"
+        "size": 438378,
+        "digest": "sha256:6d7a5c18f4e698473efe14042fd60903957aa0c5886af90422dc0b7e868cb3ee"
       },
       {
         "name": "SHA256SUMS.txt",
         "size": 104,
-        "digest": "sha256:62a4e6123368aad951c54e1cc5aa1884f16aa7855d31c2af5d4af8ca3962c111"
+        "digest": "sha256:09511e79aaef5e2e0907f51fc5bc3208f7760af37f603cece450f5db94682044"
       }
     ]
   }
