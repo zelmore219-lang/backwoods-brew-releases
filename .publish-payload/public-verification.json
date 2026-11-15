@@ -1,0 +1,55 @@
+{
+  "publicBytesVerified": [
+    {
+      "version": "0.10.0",
+      "url": "https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/pest-0.10.0/Backwoods-Pest-Control-Setup-0.10.0.exe",
+      "sha256": "8a2747f80cf374fb12357058a00e2106a2028850fb8a2c78ec614d270479e608",
+      "size": 113612367,
+      "publicDownloadVerified": true
+    },
+    {
+      "version": "0.4.9",
+      "url": "https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/employees-0.4.9/Backwoods-Employees-Setup-0.4.9.exe",
+      "sha256": "78c3d589e93ce60b235c54c0bf424a41d618e2f0a5b74fb7176f8651cf45be43",
+      "size": 172721704,
+      "publicDownloadVerified": true
+    },
+    {
+      "sha256": "1c7870f190e82445931d85aa73f61e905e90f9f7175d3f16b7bf62fcc007b2e2",
+      "size": 103398893,
+      "url": "https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/pest-0.10.0/Backwoods-Pest-Control-Firebase-0.10.0.exe",
+      "version": "0.10.0",
+      "publicDownloadVerified": true
+    },
+    {
+      "version": "1.0.11",
+      "url": "https://github.com/zelmore219-lang/backwoods-accounting-/releases/download/apps-pest-integration-2026-11-15/Backwoods-Business-Accounting-Setup-1.0.11.exe",
+      "sha256": "5c6affc56380db3df6f14ef48e6342932e060d22bbd325df92a32054dd49d8db",
+      "size": 180743086,
+      "publicDownloadVerified": true
+    },
+    {
+      "version": "1.0.11",
+      "url": "https://github.com/zelmore219-lang/backwoods-accounting-/releases/download/apps-pest-integration-2026-11-15/Backwoods-Business-Accounting-1.0.11.apk",
+      "sha256": "16ec86d56249e94ae2b1af076f1af599ec1dfc5b47f002a034989c2fc4101d71",
+      "size": 40107716,
+      "packageName": "com.backwoodsbrew.accounting",
+      "versionCode": 10011,
+      "minSdk": 24,
+      "abis": [
+        "arm64-v8a",
+        "x86_64"
+      ],
+      "certificateSha256": "53e80224d4d6e17630fe5462b04eb5071ee94692c8e2baf4b68285302853bcbb",
+      "publicDownloadVerified": true
+    }
+  ],
+  "feeds": {
+    "pest": "https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/pest-updates/backwoods-pest-updates.json",
+    "employees": "https://github.com/zelmore219-lang/backwoods-brew-releases/releases/download/employee-updates/backwoods-employees-updates.json",
+    "accounting": "https://github.com/zelmore219-lang/backwoods-accounting-/releases/download/app-updates/backwoods-updates.json"
+  },
+  "mainVendorBytesRetained": true,
+  "employeeAndroidEntryRetained": true,
+  "liveBusinessDataChanged": false
+}
