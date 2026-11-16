@@ -1,18 +1,18 @@
 {
   "sourceRepository": "zelmore219-lang/backwoods-brew-android",
-  "sourceSha": "b868c2c2473f0431e67f25cd49f33fb7e848e68a",
-  "version": "0.4.11",
-  "acceptanceRun": 43755122747,
-  "tag": "employees-0.4.11",
+  "sourceSha": "8cbb47690b73f863e2dbc39e25a4ffbebf012a79",
+  "version": "0.4.12",
+  "acceptanceRun": 43792726204,
+  "tag": "employees-0.4.12",
   "feedTag": "employee-updates",
   "feedName": "backwoods-employees-updates.json",
-  "installer": "Backwoods-Employees-Setup-0.4.11.exe",
-  "notes": "Windows 0.4.11 retries temporary configuration/owner-startup failures and reports safe error codes and the failing step. Existing Production v2 and Pest connections and the current Employee Android entry are retained. Production 1.0.2 separately adds categorized local recipe imports.",
+  "installer": "Backwoods-Employees-Setup-0.4.12.exe",
+  "notes": "Windows 0.4.12 reuses project-scoped owner credentials, queries indexed owner profiles instead of scanning all employees, and reports safe quota service/metric details when Google supplies them. Existing Employee records, Production/Pest connections and Android entry are retained. Live owner startup must still be checked on the original PC.",
   "files": [
     {
-      "name": "Backwoods-Employees-Setup-0.4.11.exe",
-      "size": 172716934,
-      "sha256": "8df2284876172def254afc0a18a8013698e86b878927cabfd8c21d298d46ab70",
+      "name": "Backwoods-Employees-Setup-0.4.12.exe",
+      "size": 172682126,
+      "sha256": "df5ad9ebfa70c4523d55e28629f1837c993931d63d5daee12e626f10ec3ffdc5",
       "parts": []
     }
   ]
