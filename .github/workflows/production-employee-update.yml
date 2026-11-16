@@ -1,0 +1,38 @@
+name: Publish accepted Employee Production and Pest support
+on:
+  push:
+    branches: [codex/publish-production-employee-2026-11-15]
+    paths: [.github/workflows/production-employee-update.yml]
+  workflow_dispatch:
+    inputs:
+      download_url:
+        description: Temporary GitHub download capability for the accepted Employee installer
+        required: true
+        type: string
+      check_only:
+        description: Validate the accepted bytes and proposed feed without publishing
+        default: true
+        type: boolean
+permissions:
+  contents: write
+concurrency:
+  group: employee-update-feed
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify exact native acceptance and package bytes before changing the feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHECK_ONLY: ${{ inputs.check_only }}
+        run: |
+          extra=()
+          if [ "$CHECK_ONLY" = 'true' ]; then extra+=(--check-only); fi
+          python .publish-production/publish.py employees "${extra[@]}"
