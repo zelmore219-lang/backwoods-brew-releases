@@ -1,0 +1,57 @@
+{
+  "sourceSha": "471bf8ada1fd8c564fe1f666835c382dd36fd6bf",
+  "sourceRepository": "zelmore219-lang/backwoods-brew-window-original1",
+  "acceptanceRun": 43990461665,
+  "version": "0.10.1",
+  "tag": "pest-0.10.1",
+  "feedTag": "pest-updates",
+  "feedName": "backwoods-pest-updates.json",
+  "installer": "Backwoods-Pest-Control-Setup-0.10.1.exe",
+  "files": [
+    {
+      "name": "Backwoods-Pest-Control-Firebase-0.10.1.exe",
+      "size": 103408774,
+      "sha256": "240f54b7dbfc9a3adb72db3b84db8555dc5546b15cdfb934c1175b2e87fa7d73",
+      "parts": [
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.1.exe.part000",
+          "size": 41943040,
+          "sha256": "1b330376c69e2c25f377776e597e2705934e3eac5e31dc3c71fdaac4c050769b"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.1.exe.part001",
+          "size": 41943040,
+          "sha256": "a6b520041bfc73611133460f98491d90288c85b14b1dff8e9f401e11630b3201"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.1.exe.part002",
+          "size": 19522694,
+          "sha256": "d491465d919de7fafdfbdc00b1e2d30e82c05766d453b7d270ebbb1686c30b8c"
+        }
+      ]
+    },
+    {
+      "name": "Backwoods-Pest-Control-Setup-0.10.1.exe",
+      "size": 113622304,
+      "sha256": "253e856f158059f101cb56ab40369c09403fbd00d435743d89e2aec35464fa89",
+      "parts": [
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.1.exe.part000",
+          "size": 41943040,
+          "sha256": "2d6909b3a062e5e58fc74048e1f28ee4abde2582338b9a74f9c500e9d371b6d7"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.1.exe.part001",
+          "size": 41943040,
+          "sha256": "81fdd118565bee825520e4061f68b7f858f575a5c0dd9461c7b25002b196b6bf"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.1.exe.part002",
+          "size": 29736224,
+          "sha256": "ee9ac69730fbb5e02bf09af84f62c7e4be593244b1b5aa512d13543bacb4ac90"
+        }
+      ]
+    }
+  ],
+  "notes": "Windows 0.10.1: shared PIN Time Clock with Clock In and Clock Out. Owner service upgrade, central Firestore rules and device registration are required before activating shared PIN timekeeping. Existing records are preserved. Android channel unchanged."
+}

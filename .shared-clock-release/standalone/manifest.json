@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Backwoods-Time-Clock-0.1.0-Windows.zip",
+    "sha256": "4342bf1fc0242b6d8ec0508df19770197d0c54d51f7286d8d2ee96d434a8b577",
+    "size": 153405402,
+    "parts": [
+      {
+        "name": "Backwoods-Time-Clock-0.1.0-Windows.zip.part000",
+        "sha256": "38a5cea4430c5a11f4cbe15f4d693e5755a6c4b9b9fd963ae2434a8cd38480f3",
+        "size": 41943040
+      },
+      {
+        "name": "Backwoods-Time-Clock-0.1.0-Windows.zip.part001",
+        "sha256": "e8b76e4f93f3ee5d833ebccd31a2f13e97910bd32aa9d6011a8495d3cbf4b764",
+        "size": 41943040
+      },
+      {
+        "name": "Backwoods-Time-Clock-0.1.0-Windows.zip.part002",
+        "sha256": "f31baf4c3f7c832de55fb79978f7e9864b16faf38720c02b41929d748f1bb1e3",
+        "size": 41943040
+      },
+      {
+        "name": "Backwoods-Time-Clock-0.1.0-Windows.zip.part003",
+        "sha256": "b0def358bd61f8e60416fde0aa79cd6710052fa51deef1f30912868c8cd20254",
+        "size": 27576282
+      }
+    ]
+  },
+  {
+    "name": "Backwoods-Time-Clock-0.1.0-Web.zip",
+    "sha256": "a665abb17c94cccbd4bf13264872028927a8d8d744b14c771fc868450c4c9c98",
+    "size": 206567,
+    "parts": [
+      {
+        "name": "Backwoods-Time-Clock-0.1.0-Web.zip.part000",
+        "sha256": "a665abb17c94cccbd4bf13264872028927a8d8d744b14c771fc868450c4c9c98",
+        "size": 206567
+      }
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "sourceSha": "cfa13da5caf42c31b90052300976be4bc597458e",
+  "sourceRepository": "zelmore219-lang/driver_routeplanner",
+  "acceptanceRun": 43990345341,
+  "version": "0.5.3",
+  "tag": "driver-0.5.3",
+  "feedTag": "driver-updates",
+  "feedName": "backwoods-driver-updates.json",
+  "installer": "Backwoods-Driver-Setup-0.5.3.exe",
+  "files": [
+    {
+      "name": "Backwoods-Driver-Setup-0.5.3.exe",
+      "size": 115347521,
+      "sha256": "c11e8f9861f701b2a1a67ff472c4d1b3d50d3236983f927b4d5497307fb100c0",
+      "parts": [
+        {
+          "name": "Backwoods-Driver-Setup-0.5.3.exe.part000",
+          "size": 41943040,
+          "sha256": "412e7882c9574541d019ca4bee8e84bd826ea04a6a6d5a08438ce6b542bb8012"
+        },
+        {
+          "name": "Backwoods-Driver-Setup-0.5.3.exe.part001",
+          "size": 41943040,
+          "sha256": "6e69a4a19269dd8d064ee3d6d36b1b0f9ee75ab1378ed7749bd8c3ac2cc29263"
+        },
+        {
+          "name": "Backwoods-Driver-Setup-0.5.3.exe.part002",
+          "size": 31461441,
+          "sha256": "f56f875a41066ee0b25e29e0926c14b7e5f384305910f37730d04473168d664c"
+        }
+      ]
+    }
+  ],
+  "notes": "Windows 0.5.3: shared PIN Time Clock with Clock In and Clock Out. Owner service upgrade, central Firestore rules and device registration are required before activating shared PIN timekeeping. Existing records are preserved. Android channel unchanged."
+}

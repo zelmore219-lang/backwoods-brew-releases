@@ -1,0 +1,36 @@
+name: Publish accepted shared PIN Windows updates
+on:
+  push:
+    branches: [codex/publish-shared-clock-2026-11-17]
+    paths: [.shared-clock-release/READY]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [employees, driver, pest]
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify accepted source evidence and publish packages before update feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .shared-clock-release/publish.py ${{ matrix.app }}
+  standalone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify and publish separate Clock In and Clock Out downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .shared-clock-release/standalone.py

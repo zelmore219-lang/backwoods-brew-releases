@@ -1,0 +1,1 @@
+Separate Time Clock 0.1.0 supports both Clock In and Clock Out with a registered device and shared employee PIN. Windows ZIP contains the portable app; Web ZIP requires HTTPS hosting. Owner service and central Firestore setup are required. This new standalone app does not have an automatic update channel.

@@ -1,0 +1,45 @@
+{
+  "sourceSha": "d2b41a118f53b0eeae31bded686be44a9fc4b4a7",
+  "sourceRepository": "zelmore219-lang/backwoods-brew-android",
+  "acceptanceRun": 43989264059,
+  "version": "0.4.13",
+  "tag": "employees-0.4.13",
+  "feedTag": "employee-updates",
+  "feedName": "backwoods-employees-updates.json",
+  "installer": "Backwoods-Employees-Setup-0.4.13.exe",
+  "files": [
+    {
+      "name": "Backwoods-Employees-Setup-0.4.13.exe",
+      "size": 172670754,
+      "sha256": "6b85f71864977fba78049858a28bd25ebfaeab0f08604c51e63a2d37a25d8b5d",
+      "parts": [
+        {
+          "name": "Backwoods-Employees-Setup-0.4.13.exe.part000",
+          "size": 41943040,
+          "sha256": "35f7872538102104581743fbfe51590bbbae187e6741fc41dacea0e41d0dc496"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.13.exe.part001",
+          "size": 41943040,
+          "sha256": "c3bf6b28275af8b4b9c11b8d53235a8c04518a9e26786f28dc7aa9557348c2ca"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.13.exe.part002",
+          "size": 41943040,
+          "sha256": "99fd2c5fdb19a3c3b748089894b3cb7a971d7f0e75023acf0769dc9d49767084"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.13.exe.part003",
+          "size": 41943040,
+          "sha256": "d0e25876a101cc57f17a6c6771d7e427cba7b5de03c0fa6d5a3c238271a22f62"
+        },
+        {
+          "name": "Backwoods-Employees-Setup-0.4.13.exe.part004",
+          "size": 4898594,
+          "sha256": "54cf912e5487c5fb2fda562cee7109279d37a26a8c173a32f4bebdc4c6b028c2"
+        }
+      ]
+    }
+  ],
+  "notes": "Windows 0.4.13: shared PIN Time Clock with Clock In and Clock Out. Owner service upgrade, central Firestore rules and device registration are required before activating shared PIN timekeeping. Existing records are preserved. Android channel unchanged."
+}
