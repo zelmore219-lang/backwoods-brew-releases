@@ -1,0 +1,57 @@
+{
+  "sourceSha": "de5ecd25724a563b5466fe418be6eba38293c3ab",
+  "sourceRepository": "zelmore219-lang/backwoods-brew-window-original1",
+  "acceptanceRun": 43995451188,
+  "version": "0.10.2",
+  "tag": "pest-0.10.2",
+  "feedTag": "pest-updates",
+  "feedName": "backwoods-pest-updates.json",
+  "installer": "Backwoods-Pest-Control-Setup-0.10.2.exe",
+  "files": [
+    {
+      "name": "Backwoods-Pest-Control-Firebase-0.10.2.exe",
+      "size": 103410107,
+      "sha256": "58c620ad0b68b712eba0e0d9e8a6f977f820adac8d80b58e512325daa90fc437",
+      "parts": [
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.2.exe.part000",
+          "size": 41943040,
+          "sha256": "0a42682d7088bfb2fa7a9bfe391c6b951afd2e9ce6f5f4758c0845a296de245f"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.2.exe.part001",
+          "size": 41943040,
+          "sha256": "0b842450df5f21784982b71e943954c02ce3eb7b2591c937504463fafd5d9849"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Firebase-0.10.2.exe.part002",
+          "size": 19524027,
+          "sha256": "1975a939820f66b3bd7b67a521130b65ffe503a91b3adaab4df41d76e896a4b7"
+        }
+      ]
+    },
+    {
+      "name": "Backwoods-Pest-Control-Setup-0.10.2.exe",
+      "size": 113622718,
+      "sha256": "63f8e2ac69f66f3984814e8686d70357c55bb13fc614415cc46c82027abb9b16",
+      "parts": [
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.2.exe.part000",
+          "size": 41943040,
+          "sha256": "a2c65efc85391c148967c0acc707eea15a8a9d01821ef2f1f6da7471f7cdba1f"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.2.exe.part001",
+          "size": 41943040,
+          "sha256": "313658c379710bf5bfdb966d6c04caa16c854da16b2c46b19b4fcb916cf91a6a"
+        },
+        {
+          "name": "Backwoods-Pest-Control-Setup-0.10.2.exe.part002",
+          "size": 29736638,
+          "sha256": "8c53aac99035d6d0028b361e2a6ba158f6dc049577595bd5c392a33ceb658bee"
+        }
+      ]
+    }
+  ],
+  "notes": "Windows 0.10.2: Account Sign In and Time Clock are separate sections. Clock In and Clock Out have explicit buttons outside the account form; PIN clocking does not sign in, and Clock Out does not sign out. Existing records are preserved. Shared clock setup remains required. Android unchanged."
+}

@@ -1,0 +1,24 @@
+name: Publish accepted separate account and Time Clock controls
+on:
+  push:
+    branches: [codex/publish-separated-clock-2026-11-17]
+    paths: [.separate-clock-release/READY]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [driver, pest]
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify exact native acceptance and publish packages before updater feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .separate-clock-release/publish.py ${{ matrix.app }}

@@ -1,0 +1,35 @@
+{
+  "sourceSha": "7632391166ddef1feb5536d95560cf99d9ccf4b1",
+  "sourceRepository": "zelmore219-lang/driver_routeplanner",
+  "acceptanceRun": 43995455402,
+  "version": "0.5.4",
+  "tag": "driver-0.5.4",
+  "feedTag": "driver-updates",
+  "feedName": "backwoods-driver-updates.json",
+  "installer": "Backwoods-Driver-Setup-0.5.4.exe",
+  "files": [
+    {
+      "name": "Backwoods-Driver-Setup-0.5.4.exe",
+      "size": 115347907,
+      "sha256": "300485622de794b2dd56b40482504495bd8ae72e5a7a00643225e86ebb54afc7",
+      "parts": [
+        {
+          "name": "Backwoods-Driver-Setup-0.5.4.exe.part000",
+          "size": 41943040,
+          "sha256": "9c02b517204ee37a7ee9cdece2db77ef9924f456375f80c0035dedc68397e1eb"
+        },
+        {
+          "name": "Backwoods-Driver-Setup-0.5.4.exe.part001",
+          "size": 41943040,
+          "sha256": "bf39967b9d8262ccda4413abc115cde6632fb41e23aca77f8ba60d60b0be7428"
+        },
+        {
+          "name": "Backwoods-Driver-Setup-0.5.4.exe.part002",
+          "size": 31461827,
+          "sha256": "983b02117b9f4344eff47de6c41563cd01d1f271fdb15fca133c4fa9be1503c0"
+        }
+      ]
+    }
+  ],
+  "notes": "Windows 0.5.4: Account Sign In and Time Clock are separate sections. Clock In and Clock Out have explicit buttons outside the account form; PIN clocking does not sign in, and Clock Out does not sign out. Existing records are preserved. Shared clock setup remains required. Android unchanged."
+}
