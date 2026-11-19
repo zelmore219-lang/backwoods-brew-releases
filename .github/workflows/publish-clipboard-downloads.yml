@@ -1,0 +1,75 @@
+name: Publish verified Backwoods clipboard downloads
+
+on:
+  push:
+    branches: [codex/publish-clock-clipboard]
+    paths: ['.clipboard-release/**', '.github/workflows/publish-clipboard-downloads.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - tag: employees-0.4.15
+            release_id: '450774069'
+            file: Backwoods-Employees-Setup-0.4.15.exe
+            sha256: bc401e9ab7efa91ca91ff877274da1c007b3724772cc0d7109267c7581c72b34
+            size: '172793747'
+          - tag: time-clock-0.1.1
+            release_id: '450774079'
+            file: Backwoods-Time-Clock-0.1.1-Windows.zip
+            sha256: c3a2e206e4afabbd5bd4eb576cddc517f3c7c7847e8a097736814f5a708da284
+            size: '153406735'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify the accepted package and publish its download
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ matrix.tag }}
+          RELEASE_ID: ${{ matrix.release_id }}
+          FILE_NAME: ${{ matrix.file }}
+          EXPECTED_SHA: ${{ matrix.sha256 }}
+          EXPECTED_SIZE: ${{ matrix.size }}
+        run: |
+          set -euo pipefail
+          root="$(mktemp -d)"
+          cat .clipboard-release/"$FILE_NAME".part[0-9][0-9][0-9] > "$root/$FILE_NAME"
+          printf '%s  %s\n' "$EXPECTED_SHA" "$FILE_NAME" > "$root/SHA256SUMS.txt"
+          (cd "$root" && sha256sum -c SHA256SUMS.txt)
+          test "$(stat -c %s "$root/$FILE_NAME")" = "$EXPECTED_SIZE"
+          release_path="repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID"
+          release="$(gh api "$release_path")"
+          jq -e --arg tag "$RELEASE_TAG" '.tag_name == $tag' <<< "$release" > /dev/null
+
+          if jq -e '.draft' <<< "$release" > /dev/null; then
+            for name in "$FILE_NAME" SHA256SUMS.txt; do
+              if ! jq -e --arg name "$name" 'any(.assets[]; .name == $name)' <<< "$release" > /dev/null; then
+                gh release upload "$RELEASE_TAG" "$root/$name" --repo "$GITHUB_REPOSITORY"
+              fi
+            done
+            release="$(gh api "$release_path")"
+          fi
+
+          for name in "$FILE_NAME" SHA256SUMS.txt; do
+            sha="$(sha256sum "$root/$name" | cut -d ' ' -f 1)"
+            size="$(stat -c %s "$root/$name")"
+            jq -e --arg name "$name" --arg sha "sha256:$sha" --argjson size "$size" \
+              'any(.assets[]; .name == $name and .digest == $sha and .size == $size)' <<< "$release" > /dev/null
+          done
+
+          if jq -e '.draft' <<< "$release" > /dev/null; then
+            gh release edit "$RELEASE_TAG" --draft=false --latest=false --repo "$GITHUB_REPOSITORY"
+          fi
+          url="https://github.com/$GITHUB_REPOSITORY/releases/download/$RELEASE_TAG/$FILE_NAME"
+          curl --fail --silent --show-error --location --retry 5 --retry-all-errors --output "$root/download" "$url"
+          printf '%s  %s\n' "$EXPECTED_SHA" "$root/download" | sha256sum -c -
+          printf 'Verified public download %s\n' "$url"
